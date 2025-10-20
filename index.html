@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sol de Coco ☀️ Tropical Swim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --coral: #fa5b26;
+            --blue: #6092b9;
+            --pink: #f5bce9;
+            --cream: #f8f0d6;
+            --light-blue: #c7dcf9;
+            --lavender: #efe2f3;
+            --olive: #ada335;
+            --dark: #2a2a2a;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--cream);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 5%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            font-style: italic;
+            background: linear-gradient(135deg, var(--coral), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-size: 0.95em;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: var(--coral);
+        }
+
+        .cart-icon {
+            background: var(--coral);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            font-size: 0.95em;
+        }
+
+        .cart-icon:hover {
+            background: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cart-count {
+            background: white;
+            color: var(--coral);
+            padding: 2px 8px;
+            border-radius: 50%;
+            font-size: 0.85em;
+            font-weight: 700;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        /* Hero */
+        .hero {
+            margin-top: 70px;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--lavender) 50%, var(--pink) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: var(--coral);
+            border-radius: 50%;
+            opacity: 0.1;
+            top: -250px;
+            right: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            max-width: 800px;
+            padding: 40px 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5em;
+            font-style: italic;
+            color: var(--coral);
+            margin-bottom: 20px;
+            line-height: 1.1;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero .tagline {
+            font-size: 1.4em;
+            color: var(--blue);
+            margin-bottom: 10px;
+            font-weight: 500;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1em;
+            color: var(--dark);
+            margin-bottom: 40px;
+            opacity: 0.8;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--coral);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Social Proof Banner */
+        .social-proof {
+            background: white;
+            padding: 20px 5%;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .social-proof p {
+            font-size: 0.95em;
+            color: var(--dark);
+            opacity: 0.7;
+        }
+
+        .social-proof strong {
+            color: var(--coral);
+        }
+
+        /* Products */
+        .products {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .section-subtitle {
+            font-size: 1.1em;
+            color: var(--blue);
+            opacity: 0.8;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image-container {
+            position: relative;
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--lavender) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            transition: transform 0.4s;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.3em;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .wishlist-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .wishlist-btn.active {
+            color: var(--coral);
+        }
+
+        .quick-add-overlay {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            transition: bottom 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .product-card:hover .quick-add-overlay {
+            bottom: 0;
+        }
+
+        .quick-add-text {
+            text-align: center;
+            font-size: 0.9em;
+            color: var(--blue);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-name {
+            font-size: 1.3em;
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .product-description {
+            font-size: 0.9em;
+            color: var(--dark);
+            opacity: 0.6;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 1.6em;
+            color: var(--coral);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .size-selector {
+            margin: 20px 0;
+        }
+
+        .size-label {
+            display: block;
+            margin-bottom: 12px;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .size-btn {
+            flex: 1;
+            min-width: 50px;
+            padding: 12px;
+            border: 2px solid var(--light-blue);
+            background: white;
+            color: var(--dark);
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.95em;
+        }
+
+        .size-btn:hover {
+            border-color: var(--coral);
+            background: var(--coral);
+            color: white;
+        }
+
+        .size-btn.selected {
+            border-color: var(--coral);
+            background: var(--coral);
+            color: white;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background: var(--dark);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 15px;
+            font-size: 1.05em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .add-to-cart:hover {
+            background: var(--coral);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(250, 91, 38, 0.3);
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, var(--coral), var(--blue));
+            padding: 60px 5%;
+            margin: 80px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .newsletter h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .newsletter p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1em;
+            outline: none;
+        }
+
+        .newsletter-btn {
+            padding: 15px 35px;
+            background: white;
+            color: var(--coral);
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .newsletter-btn:hover {
+            background: var(--dark);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s;
+        }
+
+        .cart-modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .cart-content {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            max-width: 550px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--cream);
+        }
+
+        .cart-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            color: var(--dark);
+            font-style: italic;
+        }
+
+        .close-cart {
+            background: var(--cream);
+            border: none;
+            font-size: 1.8em;
+            cursor: pointer;
+            padding: 5px 15px;
+            border-radius: 50%;
+            color: var(--dark);
+            transition: all 0.3s;
+        }
+
+        .close-cart:hover {
+            background: var(--coral);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--cream);
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 5px;
+            font-size: 1.05em;
+        }
+
+        .cart-item-size {
+            color: var(--blue);
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+
+        .cart-item-price {
+            color: var(--coral);
+            font-weight: 700;
+            font-size: 1.2em;
+            margin: 0 15px;
+        }
+
+        .remove-item {
+            background: var(--cream);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--dark);
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.9em;
+        }
+
+        .remove-item:hover {
+            background: var(--coral);
+            color: white;
+        }
+
+        .cart-total {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px solid var(--dark);
+        }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .cart-total-label {
+            font-size: 1.3em;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .cart-total-amount {
+            font-size: 2em;
+            color: var(--coral);
+            font-weight: 700;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: var(--coral);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 15px;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .checkout-btn:hover {
+            background: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--blue);
+        }
+
+        .empty-cart-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 5% 30px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: var(--coral);
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--coral);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--coral);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            color: white;
+            padding: 18px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 3000;
+            transition: bottom 0.4s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .toast.show {
+            bottom: 30px;
+        }
+
+        .toast-icon {
+            font-size: 1.5em;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3em;
+            }
+
+            .hero .tagline {
+                font-size: 1.1em;
+            }
+
+            .section-title {
+                font-size: 2.2em;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links .nav-link {
+                display: none;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Sol de Coco</div>
+            <div class="nav-links">
+                <a href="#shop" class="nav-link">Shop</a>
+                <a href="#about" class="nav-link">About</a>
+                <button class="cart-icon" onclick="toggleCart()">
+                    <span>🛍</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Sol de Coco</h1>
+            <p class="tagline">tropical vibes. summer forever.</p>
+            <p class="subtitle">Hand-crafted swimwear for the girls who live for beach days ☀️</p>
+            <a href="#shop" class="cta-button">Shop The Collection</a>
+        </div>
+    </section>
+
+    <div class="social-proof">
+        <p>✨ <strong>2,500+</strong> babes rocking Sol de Coco worldwide | Free shipping on orders over $100</p>
+    </div>
+
+    <section class="products" id="shop">
+        <div class="section-header">
+            <h2 class="section-title">Shop The Vibe</h2>
+            <p class="section-subtitle">Every piece hand-crafted with love ♡</p>
+        </div>
+        <div class="product-grid">
+            <div class="product-card" data-product="1">
+                <div class="product-image-container">
+                    <button class="wishlist-btn" onclick="toggleWishlist(event, 1)">♡</button>
+                    <div class="product-image">🌴</div>
+                    <div class="quick-add-overlay">
+                        <div class="quick-add-text">Click to choose your size ⬇️</div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Tropical Paradise</div>
+                    <div class="product-description">Reversible bikini set</div>
+                    <div class="product-price">$89</div>
+                    <div class="size-selector">
+                        <label class="size-label">Select Size</label>
+                        <div class="size-options">
+                            <button class="size-btn" onclick="selectSize(event, 1, 'XS')">XS</button>
+                            <button class="size-btn" onclick="selectSize(event, 1, 'S')">S</button>
+                            <button class="size-btn selected" onclick="selectSize(event, 1, 'M')">M</button>
+                            <button class="size-btn" onclick="selectSize(event, 1, 'L')">L</button>
+                            <button class="size-btn" onclick="selectSize(event, 1, 'XL')">XL</button>
+                        </div>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Tropical Paradise', 89.99, 1)">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-product="2">
+                <div class="product-image-container">
+                    <button class="wishlist-btn" onclick="toggleWishlist(event, 2)">♡</button>
+                    <div class="product-image">🥥</div>
+                    <div class="quick-add-overlay">
+                        <div class="quick-add-text">Click to choose your size ⬇️</div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Coconut Dream</div>
+                    <div class="product-description">High-cut one-piece</div>
+                    <div class="product-price">$95</div>
+                    <div class="size-selector">
+                        <label class="size-label">Select Size</label>
+                        <div class="size-options">
+                            <button class="size-btn" onclick="selectSize(event, 2, 'XS')">XS</button>
+                            <button class="size-btn" onclick="selectSize(event, 2, 'S')">S</button>
+                            <button class="size-btn selected" onclick="selectSize(event, 2, 'M')">M</button>
+                            <button class="size-btn" onclick="selectSize(event, 2, 'L')">L</button>
+                            <button class="size-btn" onclick="selectSize(event, 2, 'XL')">XL</button>
+                        </div>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Coconut Dream', 95.99, 2)">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-product="3">
+                <div class="product-image-container">
+                    <button class="wishlist-btn" onclick="toggleWishlist(event, 3)">♡</button>
+                    <div class="product-image">🌊</div>
+                    <div class="quick-add-overlay">
+                        <div class="quick-add-text">Click to choose your size ⬇️</div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Ocean Wave</div>
+                    <div class="product-description">Triangle bikini top + cheeky bottom</div>
+                    <div class="product-price">$84</div>
+                    <div class="size-selector">
+                        <label class="size-label">Select Size</label>
+                        <div class="size-options">
+                            <button class="size-btn" onclick="selectSize(event, 3, 'XS')">XS</button>
+                            <button class="size-btn" onclick="selectSize(event, 3, 'S')">S</button>
+                            <button class="size-btn selected" onclick="selectSize(event, 3, 'M')">M</button>
+                            <button class="size-btn" onclick="selectSize(event, 3, 'L')">L</button>
+                            <button class="size-btn" onclick="selectSize(event, 3, 'XL')">XL</button>
+                        </div>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Ocean Wave', 84.99, 3)">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-product="4">
+                <div class="product-image-container">
+                    <button class="wishlist-btn" onclick="toggleWishlist(event, 4)">♡</button>
+                    <div class="product-image">☀️</div>
+                    <div class="quick-add-overlay">
+                        <div class="quick-add-text">Click to choose your size ⬇️</div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Sunset Glow</div>
+                    <div class="product-description">Ribbed one-piece with low back</div>
+                    <div class="product-price">$92</div>
+                    <div class="size-selector">
+                        <label class="size-label">Select Size</label>
+                        <div class="size-options">
+                            <button class="size-btn" onclick="selectSize(event, 4, 'XS')">XS</button>
+                            <button class="size-btn" onclick="selectSize(event, 4, 'S')">S</button>
+                            <button class="size-btn selected" onclick="selectSize(event, 4, 'M')">M</button>
+                            <button class="size-btn" onclick="selectSize(event, 4, 'L')">L</button>
+                            <button class="size-btn" onclick="selectSize(event, 4, 'XL')">XL</button>
+                        </div>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Sunset Glow', 92.99, 4)">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-product="5">
+                <div class="product-image-container">
+                    <button class="wishlist-btn" onclick="toggleWishlist(event, 5)">♡</button>
+                    <div class="product-image">🏝️</div>
+                    <div class="quick-add-overlay">
+                        <div class="quick-add-text">Click to choose your size ⬇️</div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Island Breeze</div>
+                    <div class="product-description">Bandeau top + high-waist bottom</div>
+                    <div class="product-price">$87</div>
+                    <div class="size-selector">
+                        <label class="size-label">Select Size</label>
+                        <div class="size-options">
+                            <button class="size-btn" onclick="selectSize(event, 5, 'XS')">XS</button>
+                            <button class="size-btn" onclick="selectSize(event, 5, 'S')">S</button>
+                            <button class="size-btn selected" onclick="selectSize(event, 5, 'M')">M</button>
+                            <button class="size-btn" onclick="selectSize(event, 5, 'L')">L</button>
+                            <button class="size-btn" onclick="selectSize(event, 5, 'XL')">XL</button>
+                        </div>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Island Breeze', 87.99, 5)">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-product="6">
+                <div class="product-image-container">
+                    <button class="wishlist-btn" onclick="toggleWishlist(event, 6)">♡</button>
+                    <div class="product-image">🌺</div>
+                    <div class="quick-add-overlay">
+                        <div class="quick-add-text">Click to choose your size ⬇️</div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Hibiscus Bloom</div>
+                    <div class="product-description">Cut-out one-piece with tie details</div>
+                    <div class="product-price">$94</div>
+                    <div class="size-selector">
+                        <label class="size-label">Select Size</label>
+                        <div class="size-options">
+                            <button class="size-btn" onclick="selectSize(event, 6, 'XS')">XS</button>
+                            <button class="size-btn" onclick="selectSize(event, 6, 'S')">S</button>
+                            <button class="size-btn selected" onclick="selectSize(event, 6, 'M')">M</button>
+                            <button class="size-btn" onclick="selectSize(event, 6, 'L')">L</button>
+                            <button class="size-btn" onclick="selectSize(event, 6, 'XL')">XL</button>
+                        </div>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Hibiscus Bloom', 94.99, 6)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <h2>Join the Sol de Coco Fam ✨</h2>
+        <p>Get exclusive drops, beach day inspo, and 15% off your first order</p>
+        <form class="newsletter-form" onsubmit="return subscribeNewsletter(event)">
+            <input type="email" class="newsletter-input" placeholder="your@email.com" required>
+            <button type="submit" class="newsletter-btn">Subscribe</button>
+        </form>
+    </section>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>Your Cart</h2>
+                <button class="close-cart" onclick="toggleCart()">×</button>
+            </div>
+            <div id="cartItems"></div>
+            <div class="cart-total">
+                <div class="cart-total-row">
+                    <span class="cart-total-label">Total</span>
+                    <span class="cart-total-amount" id="cartTotal">$0</span>
+                </div>
+                <button class="checkout-btn" onclick="checkout()">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span id="toastMessage">Added to cart!</span>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sol de Coco</h3>
+                <p>Bringing you tropical vibes and endless summer since 2024. Hand-crafted swimwear made with love.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">📷</a>
+                    <a href="#" class="social-link">🎵</a>
+                    <a href="#" class="social-link">📱</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Shop</h3>
+                <a href="#shop">All Swimwear</a>
+                <a href="#">Bikinis</a>
+                <a href="#">One-Pieces</a>
+                <a href="#">New Arrivals</a>
+                <a href="#">Best Sellers</a>
+            </div>
+            <div class="footer-section">
+                <h3>Help</h3>
+                <a href="#">Size Guide</a>
+                <a href="#">Shipping & Returns</a>
+                <a href="#">FAQ</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Track Order</a>
+            </div>
+            <div class="footer-section">
+                <h3>About</h3>
+                <a href="#">Our Story</a>
+                <a href="#">Sustainability</a>
+                <a href="#">Reviews</a>
+                <a href="#">Affiliate Program</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sol de Coco. Made with ♡ for beach babes everywhere.</p>
+        </div>
+    </footer>
+
+    <script>
+        let cart = [];
+        let selectedSizes = {1: 'M', 2: 'M', 3: 'M', 4: 'M', 5: 'M', 6: 'M'};
+
+        function selectSize(event, productId, size) {
+            // Remove selected class from all size buttons in this product
+            const productCard = event.target.closest('.product-card');
+            const sizeButtons = productCard.querySelectorAll('.size-btn');
+            sizeButtons.forEach(btn => btn.classList.remove('selected'));
+
+            // Add selected class to clicked button
+            event.target.classList.add('selected');
+            selectedSizes[productId] = size;
+        }
+
+        function addToCart(name, price, productId) {
+            const size = selectedSizes[productId];
+            cart.push({
+                name: name,
+                price: price,
+                size: size
+            });
+            updateCart();
+            showToast(`${name} (Size ${size}) added to cart! 🎉`);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartCount = document.getElementById('cartCount');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+
+            cartCount.textContent = cart.length;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <div class="empty-cart-icon">🛍️</div>
+                        <p>Your cart is empty</p>
+                        <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.6;">Add some tropical vibes!</p>
+                    </div>
+                `;
+                cartTotal.textContent = '$0';
+                return;
+            }
+
+            let total = 0;
+            let html = '';
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                html += `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-size">Size: ${item.size}</div>
+                        </div>
+                        <div class="cart-item-price">$${item.price.toFixed(0)}</div>
+                        <button class="remove-item" onclick="removeFromCart(${index})">Remove</button>
+                    </div>
+                `;
+            });
+
+            cartItems.innerHTML = html;
+            cartTotal.textContent = `$${total.toFixed(0)}`;
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cartModal');
+            modal.classList.toggle('active');
+        }
+
+        function toggleWishlist(event, productId) {
+            event.stopPropagation();
+            event.target.classList.toggle('active');
+            const isActive = event.target.classList.contains('active');
+            event.target.textContent = isActive ? '♥' : '♡';
+            if (isActive) {
+                showToast('Added to wishlist ♥');
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            showToast('Welcome to the fam! Check your email for 15% off ✨');
+            event.target.reset();
+            return false;
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                showToast('Your cart is empty!');
+                return;
+            }
+            showToast('Redirecting to checkout... 🌴');
+            // This is where you'd integrate Stripe
+            setTimeout(() => {
+                alert('Stripe checkout integration goes here!\n\nFor demo purposes only. To add real payments:\n1. Sign up at stripe.com\n2. Add Stripe.js\n3. Create checkout session\n\nSee README.md for details.');
+            }, 1000);
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

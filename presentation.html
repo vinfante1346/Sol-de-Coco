@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sol de Coco - Business Presentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --coral: #fa5b26;
+            --blue: #6092b9;
+            --pink: #f5bce9;
+            --cream: #f8f0d6;
+            --light-blue: #c7dcf9;
+            --lavender: #efe2f3;
+            --olive: #ada335;
+            --dark: #2a2a2a;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--dark);
+            color: white;
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5em;
+            font-style: italic;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            font-style: italic;
+            margin-bottom: 30px;
+            color: var(--coral);
+        }
+
+        h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: var(--light-blue);
+        }
+
+        p {
+            font-size: 1.3em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .tagline {
+            font-size: 1.8em;
+            color: var(--light-blue);
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 4em;
+            font-weight: 700;
+            color: var(--coral);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+
+        ul {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        li {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--coral);
+            font-weight: 700;
+            font-size: 1.3em;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .channel {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .channel:hover {
+            border-color: var(--coral);
+            transform: translateY(-5px);
+        }
+
+        .channel-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .channel-name {
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--coral);
+        }
+
+        .channel-desc {
+            font-size: 1em;
+            opacity: 0.7;
+        }
+
+        .timeline {
+            position: relative;
+            margin-top: 50px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            align-items: flex-start;
+        }
+
+        .timeline-month {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--coral);
+            min-width: 150px;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--light-blue);
+        }
+
+        .timeline-desc {
+            font-size: 1.1em;
+            opacity: 0.8;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        .control-btn {
+            background: var(--coral);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .control-btn:hover {
+            background: white;
+            color: var(--coral);
+            transform: scale(1.05);
+        }
+
+        .control-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .slide-number {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            font-size: 1.2em;
+            opacity: 0.5;
+            z-index: 100;
+        }
+
+        /* Specific slide backgrounds */
+        .slide-1 {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--lavender) 50%, var(--pink) 100%);
+        }
+
+        .slide-2 {
+            background: linear-gradient(135deg, var(--dark) 0%, #1a1a1a 100%);
+        }
+
+        .slide-3 {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--blue) 100%);
+        }
+
+        .slide-4 {
+            background: var(--dark);
+        }
+
+        .slide-5 {
+            background: linear-gradient(135deg, #1a1a1a 0%, var(--dark) 100%);
+        }
+
+        .slide-6 {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--dark) 100%);
+        }
+
+        .slide-7 {
+            background: var(--dark);
+        }
+
+        .slide-8 {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--coral) 100%);
+        }
+
+        .slide-9 {
+            background: linear-gradient(135deg, var(--lavender) 0%, var(--pink) 100%);
+        }
+
+        .slide-10 {
+            background: var(--dark);
+        }
+
+        .slide-11 {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--blue) 100%);
+        }
+
+        .budget-table {
+            width: 100%;
+            margin-top: 40px;
+            border-collapse: collapse;
+        }
+
+        .budget-table th,
+        .budget-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .budget-table th {
+            color: var(--coral);
+            font-size: 1.3em;
+        }
+
+        .budget-table td {
+            font-size: 1.2em;
+        }
+
+        .budget-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .highlight {
+            color: var(--coral);
+            font-weight: 700;
+        }
+
+        .box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 5px solid var(--coral);
+            margin-top: 30px;
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .metric-label {
+            opacity: 0.7;
+        }
+
+        .metric-value {
+            font-weight: 700;
+            color: var(--coral);
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 3em;
+            }
+
+            h2 {
+                font-size: 2.5em;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .channel-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <div class="slide-number" id="slideNumber">1 / 11</div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide slide-1 active">
+            <div class="slide-content" style="text-align: center;">
+                <h1 style="color: var(--coral);">Sol de Coco</h1>
+                <p class="tagline">tropical vibes. summer forever.</p>
+                <p style="font-size: 1.5em; margin-top: 60px;">Hand-Crafted Swimwear for the Modern Beach Babe</p>
+                <p style="font-size: 1.2em; opacity: 0.7; margin-top: 20px;">Business Presentation 2025</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Opportunity -->
+        <div class="slide slide-2">
+            <div class="slide-content">
+                <h2>The Opportunity</h2>
+                <p style="font-size: 1.5em; margin-bottom: 40px;">The swimwear market is booming, and young women are seeking authentic, sustainable brands.</p>
+
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">$29B</div>
+                        <div class="stat-label">Global Swimwear Market</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">7.5%</div>
+                        <div class="stat-label">Annual Growth Rate</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">65%</div>
+                        <div class="stat-label">Shop Online</div>
+                    </div>
+                </div>
+
+                <div class="box" style="margin-top: 60px;">
+                    <p style="font-size: 1.3em;"><strong>Our Target:</strong> Women aged 17-36 who love beach culture, value sustainability, and seek unique, hand-crafted pieces.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Problem -->
+        <div class="slide slide-3">
+            <div class="slide-content">
+                <h2>The Problem</h2>
+                <p style="font-size: 1.4em; margin-bottom: 50px;">Traditional swimwear brands fail to connect with Gen Z and young millennials</p>
+
+                <ul>
+                    <li>Mass-produced, lacks uniqueness</li>
+                    <li>Poor quality, doesn't last</li>
+                    <li>Not sustainable or ethical</li>
+                    <li>Boring, corporate branding</li>
+                    <li>Limited size inclusivity</li>
+                    <li>No community or authentic connection</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 4: The Solution -->
+        <div class="slide slide-4">
+            <div class="slide-content">
+                <h2>The Solution: Sol de Coco</h2>
+
+                <div class="two-column">
+                    <div>
+                        <h3>What We Offer</h3>
+                        <ul>
+                            <li>Hand-crafted, unique designs</li>
+                            <li>Sustainable materials</li>
+                            <li>Tropical, beach-inspired aesthetic</li>
+                            <li>Size inclusive (XS-XL+)</li>
+                            <li>Affordable luxury ($84-$95)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Our Difference</h3>
+                        <ul>
+                            <li>Authentic founder story</li>
+                            <li>Community-first brand</li>
+                            <li>TikTok-native marketing</li>
+                            <li>Direct-to-consumer model</li>
+                            <li>Made with love ♡</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Product Line -->
+        <div class="slide slide-5">
+            <div class="slide-content">
+                <h2>Product Line</h2>
+
+                <div class="two-column">
+                    <div>
+                        <h3>Launch Collection</h3>
+                        <ul style="font-size: 1.2em;">
+                            <li>Tropical Paradise - Reversible Bikini ($89)</li>
+                            <li>Coconut Dream - One-Piece ($95)</li>
+                            <li>Ocean Wave - Triangle Bikini ($84)</li>
+                            <li>Sunset Glow - Ribbed One-Piece ($92)</li>
+                            <li>Island Breeze - Bandeau Set ($87)</li>
+                            <li>Hibiscus Bloom - Cut-Out One-Piece ($94)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Future Expansion</h3>
+                        <ul style="font-size: 1.2em;">
+                            <li>Beach cover-ups</li>
+                            <li>Beach bags & accessories</li>
+                            <li>Sustainable sunscreen</li>
+                            <li>Men's swim shorts</li>
+                            <li>Kids' swimwear</li>
+                            <li>Seasonal collections</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Marketing Strategy -->
+        <div class="slide slide-6">
+            <div class="slide-content">
+                <h2>Marketing Strategy</h2>
+                <p style="font-size: 1.4em; margin-bottom: 40px;">Multi-channel approach targeting where our audience spends time</p>
+
+                <div class="channel-grid">
+                    <div class="channel">
+                        <div class="channel-icon">🎵</div>
+                        <div class="channel-name">TikTok</div>
+                        <div class="channel-desc">2-3 posts daily, primary channel</div>
+                    </div>
+                    <div class="channel">
+                        <div class="channel-icon">📷</div>
+                        <div class="channel-name">Instagram</div>
+                        <div class="channel-desc">Reels, Stories, Shopping</div>
+                    </div>
+                    <div class="channel">
+                        <div class="channel-icon">📌</div>
+                        <div class="channel-name">Pinterest</div>
+                        <div class="channel-desc">SEO traffic, inspiration</div>
+                    </div>
+                    <div class="channel">
+                        <div class="channel-icon">📧</div>
+                        <div class="channel-name">Email</div>
+                        <div class="channel-desc">Automation, campaigns</div>
+                    </div>
+                    <div class="channel">
+                        <div class="channel-icon">💰</div>
+                        <div class="channel-name">Paid Ads</div>
+                        <div class="channel-desc">TikTok, FB, IG, Google</div>
+                    </div>
+                    <div class="channel">
+                        <div class="channel-icon">⭐</div>
+                        <div class="channel-name">Influencers</div>
+                        <div class="channel-desc">Micro-influencer partnerships</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: 12-Month Roadmap -->
+        <div class="slide slide-7">
+            <div class="slide-content">
+                <h2>12-Month Roadmap</h2>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-month">Month 1-2</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Foundation & Launch</div>
+                            <div class="timeline-desc">Website live, social accounts, content creation, soft + official launch, influencer gifting</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-month">Month 3-4</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Content Machine</div>
+                            <div class="timeline-desc">Daily posting, small ad spend ($1K/month), first sales, gather reviews</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-month">Month 5-6</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Scale Organic</div>
+                            <div class="timeline-desc">Increase ads ($2.5K/month), UGC campaigns, paid influencers, optimize website</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-month">Month 7-12</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Scale & Expand</div>
+                            <div class="timeline-desc">TikTok Shop launch, new collections, team building, $50K+/month revenue</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Financial Projections -->
+        <div class="slide slide-8">
+            <div class="slide-content">
+                <h2>Financial Projections</h2>
+
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">$100K+</div>
+                        <div class="stat-label">Year 1 Revenue Goal</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">45%</div>
+                        <div class="stat-label">Gross Margin</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">$89</div>
+                        <div class="stat-label">Average Order Value</div>
+                    </div>
+                </div>
+
+                <table class="budget-table">
+                    <thead>
+                        <tr>
+                            <th>Timeline</th>
+                            <th>Monthly Revenue</th>
+                            <th>Followers (TikTok)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Month 1-2</td>
+                            <td>$2,000-5,000</td>
+                            <td>1,000-2,000</td>
+                        </tr>
+                        <tr>
+                            <td>Month 3-4</td>
+                            <td>$10,000-15,000</td>
+                            <td>5,000-10,000</td>
+                        </tr>
+                        <tr>
+                            <td>Month 5-6</td>
+                            <td>$25,000-35,000</td>
+                            <td>20,000-30,000</td>
+                        </tr>
+                        <tr>
+                            <td>Month 7-12</td>
+                            <td class="highlight">$50,000+</td>
+                            <td class="highlight">50,000+</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 9: Investment & Budget -->
+        <div class="slide slide-9">
+            <div class="slide-content">
+                <h2>Investment Needed</h2>
+
+                <div class="box">
+                    <h3 style="color: white; margin-bottom: 30px;">Launch Budget: $3,000-5,000</h3>
+                    <div class="metric-row">
+                        <span class="metric-label">Professional Photography</span>
+                        <span class="metric-value">$500-1,000</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Initial Inventory</span>
+                        <span class="metric-value">$1,000-2,000</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Marketing (Month 1)</span>
+                        <span class="metric-value">$1,000-1,500</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Tools & Software</span>
+                        <span class="metric-value">$100-200</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Website & Domain</span>
+                        <span class="metric-value">$50-100</span>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h3 style="color: white; margin-bottom: 30px;">Monthly Operating: $2,500-4,000</h3>
+                    <div class="metric-row">
+                        <span class="metric-label">Paid Advertising</span>
+                        <span class="metric-value">$1,500-2,500</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Influencer Partnerships</span>
+                        <span class="metric-value">$300-500</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Content Creation</span>
+                        <span class="metric-value">$200-500</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Software & Tools</span>
+                        <span class="metric-value">$100-150</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Inventory Replenishment</span>
+                        <span class="metric-value">As needed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Competitive Advantage -->
+        <div class="slide slide-10">
+            <div class="slide-content">
+                <h2>Why We'll Win</h2>
+
+                <div class="two-column">
+                    <div>
+                        <h3>Market Positioning</h3>
+                        <ul>
+                            <li>TikTok-native brand from day one</li>
+                            <li>Authentic founder story</li>
+                            <li>Community > customers mindset</li>
+                            <li>Sustainable & ethical</li>
+                            <li>Affordable luxury pricing</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Execution Strategy</h3>
+                        <ul>
+                            <li>Data-driven decisions</li>
+                            <li>Rapid testing & iteration</li>
+                            <li>Strong brand identity</li>
+                            <li>Customer obsession</li>
+                            <li>Lean & agile operations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="box" style="margin-top: 60px;">
+                    <p style="font-size: 1.4em;"><strong>Our Secret Weapon:</strong> We're not just selling swimwear—we're selling a lifestyle, a feeling, a community of beach-loving babes who want to feel confident and beautiful.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Call to Action -->
+        <div class="slide slide-11">
+            <div class="slide-content" style="text-align: center;">
+                <h1 style="color: white; margin-bottom: 40px;">Let's Make Waves</h1>
+                <p style="font-size: 1.8em; margin-bottom: 60px;">Join us in building the next generation of swimwear</p>
+
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">🌴</div>
+                        <div class="stat-label">Website: soldecocoswim.com</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">📧</div>
+                        <div class="stat-label">Email: hello@soldecoco.com</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">📱</div>
+                        <div class="stat-label">Instagram: @soldecoco</div>
+                    </div>
+                </div>
+
+                <p style="font-size: 1.5em; margin-top: 80px; font-style: italic; color: var(--coral);">tropical vibes. summer forever. ☀️</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="control-btn" id="prevBtn" onclick="previousSlide()">← Previous</button>
+        <button class="control-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+
+            document.getElementById('slideNumber').textContent = `${currentSlide + 1} / ${totalSlides}`;
+
+            // Update button states
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        // Initialize
+        updateSlide();
+    </script>
+</body>
+</html>
