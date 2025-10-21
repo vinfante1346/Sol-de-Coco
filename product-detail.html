@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tropical Paradise Bikini - Sol de Coco</title>
+    <meta name="description" content="Reversible bikini set with tropical vibes. Available in sizes XS-XL. Free shipping on orders over $75.">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+    <!-- Open Graph / Social Meta -->
+    <meta property="og:title" content="Tropical Paradise Bikini - Sol de Coco">
+    <meta property="og:description" content="Reversible bikini set with tropical vibes">
+    <meta property="og:image" content="https://soldecoco.com/images/tropical-paradise.jpg">
+    <meta property="og:type" content="product">
+    <meta property="product:price:amount" content="89.00">
+    <meta property="product:price:currency" content="USD">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --coral: #fa5b26;
+            --blue: #6092b9;
+            --pink: #f5bce9;
+            --cream: #f8f0d6;
+            --light-blue: #c7dcf9;
+            --lavender: #efe2f3;
+            --dark: #2a2a2a;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --error: #f44336;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--dark);
+            background: white;
+            padding-bottom: 80px; /* Space for sticky bar */
+        }
+
+        /* ========== HEADER ========== */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 12px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 8px;
+            min-width: 48px;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-title {
+            font-size: 1em;
+            font-weight: 600;
+            flex: 1;
+            text-align: center;
+        }
+
+        .cart-icon-pdp {
+            font-size: 1.5em;
+            min-width: 48px;
+            min-height: 48px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        /* ========== IMAGE GALLERY ========== */
+        .image-gallery {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background: var(--cream);
+        }
+
+        .image-container {
+            display: flex;
+            transition: transform 0.3s ease;
+            touch-action: pan-x pinch-zoom;
+        }
+
+        .gallery-image {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            user-select: none;
+        }
+
+        .gallery-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: white;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .zoom-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            z-index: 1000;
+            touch-action: none;
+        }
+
+        .zoom-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .zoom-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .zoom-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 2em;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* ========== PRODUCT INFO ========== */
+        .product-info {
+            padding: 24px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-header {
+            margin-bottom: 20px;
+        }
+
+        .product-name {
+            font-size: 1.75em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .product-subtitle {
+            color: #666;
+            font-size: 1em;
+        }
+
+        /* ========== REVIEWS SUMMARY ========== */
+        .reviews-summary {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 16px 0;
+            padding: 16px;
+            background: var(--cream);
+            border-radius: 12px;
+        }
+
+        .star-rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .stars {
+            color: #FFD700;
+            font-size: 1.2em;
+            letter-spacing: 2px;
+        }
+
+        .rating-number {
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        .review-count {
+            color: #666;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* ========== PRICING ========== */
+        .pricing-section {
+            margin: 20px 0;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .current-price {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--coral);
+        }
+
+        .original-price {
+            font-size: 1.3em;
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .savings-badge {
+            background: var(--success);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .stock-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            font-size: 0.95em;
+        }
+
+        .stock-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .in-stock .stock-dot {
+            background: var(--success);
+        }
+
+        .low-stock .stock-dot {
+            background: var(--warning);
+        }
+
+        .out-of-stock .stock-dot {
+            background: var(--error);
+        }
+
+        /* ========== VARIANT SELECTORS ========== */
+        .variant-section {
+            margin: 24px 0;
+        }
+
+        .variant-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-weight: 600;
+            font-size: 1em;
+        }
+
+        .size-guide-link {
+            color: var(--blue);
+            text-decoration: underline;
+            font-size: 0.9em;
+            font-weight: 400;
+            cursor: pointer;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+        }
+
+        .variant-options {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .variant-btn {
+            min-width: 60px;
+            min-height: 48px;
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .variant-btn:hover {
+            border-color: var(--coral);
+        }
+
+        .variant-btn.selected {
+            border-color: var(--coral);
+            background: var(--coral);
+            color: white;
+        }
+
+        .variant-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+
+        /* Color swatches */
+        .color-swatch {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .color-swatch.selected {
+            border-color: var(--coral);
+            box-shadow: 0 0 0 2px white, 0 0 0 4px var(--coral);
+        }
+
+        /* ========== COLLAPSIBLE SECTIONS ========== */
+        .collapsible-section {
+            border-bottom: 1px solid #eee;
+        }
+
+        .collapsible-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.05em;
+            min-height: 60px;
+            user-select: none;
+        }
+
+        .collapsible-icon {
+            font-size: 1.2em;
+            transition: transform 0.3s;
+        }
+
+        .collapsible-section.open .collapsible-icon {
+            transform: rotate(180deg);
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .collapsible-section.open .collapsible-content {
+            max-height: 1000px;
+            padding-bottom: 20px;
+        }
+
+        .collapsible-inner {
+            padding: 0 0 20px 0;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .collapsible-inner ul {
+            padding-left: 20px;
+            margin-top: 12px;
+        }
+
+        .collapsible-inner li {
+            margin-bottom: 8px;
+        }
+
+        /* ========== STICKY ADD TO CART BAR ========== */
+        .sticky-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #eee;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 99;
+            padding: 12px 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .sticky-bar.visible {
+            transform: translateY(0);
+        }
+
+        .sticky-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .sticky-price {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--coral);
+        }
+
+        .sticky-cta {
+            flex: 1;
+            background: linear-gradient(135deg, var(--coral), var(--blue));
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            min-height: 54px;
+            transition: transform 0.2s;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .sticky-cta:active {
+            transform: scale(0.98);
+        }
+
+        .sticky-cta:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ========== MINI CART SLIDE-OVER ========== */
+        .mini-cart-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 200;
+        }
+
+        .mini-cart-overlay.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        .mini-cart {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 20px 20px 0 0;
+            padding: 24px 20px;
+            max-height: 80vh;
+            overflow-y: auto;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+            z-index: 201;
+        }
+
+        .mini-cart.active {
+            transform: translateY(0);
+        }
+
+        .mini-cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .mini-cart-title {
+            font-size: 1.3em;
+            font-weight: 700;
+        }
+
+        .mini-cart-close {
+            background: none;
+            border: none;
+            font-size: 2em;
+            cursor: pointer;
+            min-width: 48px;
+            min-height: 48px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .cart-item-variant {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .cart-item-price {
+            font-weight: 700;
+            color: var(--coral);
+            margin-top: 8px;
+        }
+
+        .mini-cart-actions {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .checkout-btn {
+            background: var(--coral);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            min-height: 54px;
+        }
+
+        .continue-shopping {
+            background: white;
+            border: 2px solid var(--coral);
+            color: var(--coral);
+            padding: 16px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            min-height: 54px;
+        }
+
+        /* ========== TOAST NOTIFICATION ========== */
+        .toast {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: var(--dark);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 300;
+            opacity: 0;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast-icon {
+            font-size: 1.5em;
+        }
+
+        /* ========== MOBILE OPTIMIZATION ========== */
+        @media (max-width: 768px) {
+            .gallery-image {
+                height: 400px;
+            }
+
+            .product-name {
+                font-size: 1.5em;
+            }
+
+            .current-price {
+                font-size: 1.75em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-image {
+                height: 350px;
+            }
+
+            .sticky-bar-content {
+                gap: 12px;
+            }
+
+            .sticky-price {
+                font-size: 1.3em;
+            }
+
+            .sticky-cta {
+                font-size: 1em;
+                padding: 14px 20px;
+            }
+        }
+
+        /* ========== ACCESSIBILITY ========== */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        *:focus-visible {
+            outline: 3px solid var(--coral);
+            outline-offset: 2px;
+        }
+
+        /* ========== LOADING STATE ========== */
+        .loading {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid white;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-left: 8px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+
+    <!-- Google Analytics / GA4 -->
+    <script>
+        // Initialize dataLayer for GTM/GA4
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+
+        // Track page view
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID'); // Replace with actual ID
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <button class="back-btn" onclick="window.history.back()" aria-label="Go back">
+                ←
+            </button>
+            <div class="header-title">Product Details</div>
+            <button class="cart-icon-pdp" onclick="window.location.href='index.html#cart'" aria-label="View cart">
+                🛍
+            </button>
+        </div>
+    </header>
+
+    <!-- Image Gallery -->
+    <div class="image-gallery" role="region" aria-label="Product images">
+        <div class="image-container" id="imageContainer">
+            <img
+                src="images/tropical-paradise.jpg"
+                alt="Tropical Paradise Bikini - Front View"
+                class="gallery-image"
+                loading="eager"
+                onclick="openZoom(this.src)"
+            >
+            <img
+                src="images/tropical-paradise.jpg"
+                alt="Tropical Paradise Bikini - Back View"
+                class="gallery-image"
+                loading="lazy"
+                onclick="openZoom(this.src)"
+            >
+            <img
+                src="images/tropical-paradise.jpg"
+                alt="Tropical Paradise Bikini - Detail View"
+                class="gallery-image"
+                loading="lazy"
+                onclick="openZoom(this.src)"
+            >
+        </div>
+        <div class="gallery-dots" role="tablist" aria-label="Image navigation">
+            <span class="dot active" role="tab" aria-selected="true" aria-label="Image 1"></span>
+            <span class="dot" role="tab" aria-selected="false" aria-label="Image 2"></span>
+            <span class="dot" role="tab" aria-selected="false" aria-label="Image 3"></span>
+        </div>
+    </div>
+
+    <!-- Zoom Overlay -->
+    <div class="zoom-overlay" id="zoomOverlay" role="dialog" aria-label="Zoomed image view">
+        <button class="zoom-close" onclick="closeZoom()" aria-label="Close zoom">&times;</button>
+        <img src="" alt="" class="zoom-image" id="zoomImage">
+    </div>
+
+    <!-- Product Info -->
+    <main class="product-info">
+        <div class="product-header">
+            <h1 class="product-name">Tropical Paradise Bikini</h1>
+            <p class="product-subtitle">Reversible bikini set with tropical vibes</p>
+        </div>
+
+        <!-- Reviews Summary -->
+        <div class="reviews-summary" onclick="scrollToReviews()">
+            <div class="star-rating">
+                <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+                <span class="rating-number">5.0</span>
+            </div>
+            <a href="#reviews" class="review-count" tabindex="0">(24 reviews)</a>
+        </div>
+
+        <!-- Pricing -->
+        <div class="pricing-section">
+            <div class="price-container">
+                <span class="current-price" id="currentPrice">$89.00</span>
+                <!-- <span class="original-price">$120.00</span>
+                <span class="savings-badge">Save $31</span> -->
+            </div>
+            <div class="stock-status in-stock" id="stockStatus">
+                <span class="stock-dot"></span>
+                <span>In Stock - Ships within 2-3 business days</span>
+            </div>
+        </div>
+
+        <!-- Color Selector -->
+        <div class="variant-section">
+            <div class="variant-label">
+                <span>Color: <strong id="selectedColor">Coral Sunset</strong></span>
+            </div>
+            <div class="variant-options">
+                <button
+                    class="color-swatch selected"
+                    style="background: linear-gradient(135deg, #fa5b26, #6092b9);"
+                    onclick="selectColor(this, 'Coral Sunset')"
+                    aria-label="Select Coral Sunset color"
+                    aria-pressed="true"
+                ></button>
+                <button
+                    class="color-swatch"
+                    style="background: linear-gradient(135deg, #f5bce9, #c7dcf9);"
+                    onclick="selectColor(this, 'Pink Sky')"
+                    aria-label="Select Pink Sky color"
+                    aria-pressed="false"
+                ></button>
+                <button
+                    class="color-swatch"
+                    style="background: linear-gradient(135deg, #6092b9, #efe2f3);"
+                    onclick="selectColor(this, 'Ocean Breeze')"
+                    aria-label="Select Ocean Breeze color"
+                    aria-pressed="false"
+                ></button>
+            </div>
+        </div>
+
+        <!-- Size Selector -->
+        <div class="variant-section">
+            <div class="variant-label">
+                <span>Size: <strong id="selectedSize">Select Size</strong></span>
+                <a href="#" class="size-guide-link" onclick="openSizeGuide(); return false;" tabindex="0">Size Guide</a>
+            </div>
+            <div class="variant-options" role="radiogroup" aria-label="Size selection">
+                <button class="variant-btn" onclick="selectSize(this, 'XS')" role="radio" aria-checked="false">XS</button>
+                <button class="variant-btn" onclick="selectSize(this, 'S')" role="radio" aria-checked="false">S</button>
+                <button class="variant-btn" onclick="selectSize(this, 'M')" role="radio" aria-checked="false">M</button>
+                <button class="variant-btn" onclick="selectSize(this, 'L')" role="radio" aria-checked="false">L</button>
+                <button class="variant-btn" onclick="selectSize(this, 'XL')" role="radio" aria-checked="false">XL</button>
+            </div>
+            <p style="margin-top: 12px; color: #666; font-size: 0.9em;">
+                <strong>Model Info:</strong> Height 5'8", wearing size M
+            </p>
+        </div>
+
+        <!-- Collapsible Sections -->
+        <div class="collapsible-section" id="descriptionSection">
+            <div class="collapsible-header" onclick="toggleSection('descriptionSection')" tabindex="0" role="button" aria-expanded="false">
+                <span>Description</span>
+                <span class="collapsible-icon">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <div class="collapsible-inner">
+                    <p>
+                        Embrace endless summer with our Tropical Paradise reversible bikini set. Hand-crafted with love and designed for the modern beach goddess.
+                    </p>
+                    <ul>
+                        <li>Reversible design - Two looks in one!</li>
+                        <li>UPF 50+ sun protection fabric</li>
+                        <li>Quick-dry, chlorine-resistant material</li>
+                        <li>Adjustable tie sides for perfect fit</li>
+                        <li>Removable padding for customizable coverage</li>
+                        <li>Handmade with sustainable materials</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="collapsible-section" id="fabricSection">
+            <div class="collapsible-header" onclick="toggleSection('fabricSection')" tabindex="0" role="button" aria-expanded="false">
+                <span>Fabric & Care</span>
+                <span class="collapsible-icon">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <div class="collapsible-inner">
+                    <p><strong>Materials:</strong></p>
+                    <ul>
+                        <li>82% Recycled Nylon</li>
+                        <li>18% Spandex</li>
+                        <li>UPF 50+ protection</li>
+                        <li>OEKO-TEX® certified</li>
+                    </ul>
+                    <p style="margin-top: 16px;"><strong>Care Instructions:</strong></p>
+                    <ul>
+                        <li>Hand wash in cold water</li>
+                        <li>Do not bleach or iron</li>
+                        <li>Lay flat to dry</li>
+                        <li>Rinse after use in chlorine/salt water</li>
+                        <li>Avoid rough surfaces to prevent snags</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="collapsible-section" id="shippingSection">
+            <div class="collapsible-header" onclick="toggleSection('shippingSection')" tabindex="0" role="button" aria-expanded="false">
+                <span>Shipping & Returns</span>
+                <span class="collapsible-icon">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <div class="collapsible-inner">
+                    <p><strong>Shipping:</strong></p>
+                    <ul>
+                        <li>FREE shipping on orders $75+</li>
+                        <li>Standard: 5-7 business days ($5.99)</li>
+                        <li>Express: 2-3 business days ($12.99)</li>
+                        <li>Processing time: 1-2 business days</li>
+                    </ul>
+                    <p style="margin-top: 16px;"><strong>Returns & Exchanges:</strong></p>
+                    <ul>
+                        <li>30-day return policy</li>
+                        <li>Free returns & exchanges</li>
+                        <li>Items must be unworn with tags attached</li>
+                        <li>For hygiene reasons, bottoms must be unopened</li>
+                        <li>Easy return process - no questions asked!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="collapsible-section" id="sizeSection">
+            <div class="collapsible-header" onclick="toggleSection('sizeSection')" tabindex="0" role="button" aria-expanded="false">
+                <span>Size & Fit</span>
+                <span class="collapsible-icon">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <div class="collapsible-inner">
+                    <p><strong>Fit:</strong> True to size, order your usual size. If between sizes or prefer more coverage, size up.</p>
+                    <p style="margin-top: 12px;"><strong>Coverage:</strong> Moderate coverage bottom, triangle top</p>
+                    <p style="margin-top: 12px;"><strong>Sizing Tips:</strong></p>
+                    <ul>
+                        <li>Measure bust at the fullest part</li>
+                        <li>Measure hips at the widest point</li>
+                        <li>Swimwear should fit snugly when dry</li>
+                        <li>Fabric will stretch slightly when wet</li>
+                        <li>Ties are adjustable for custom fit</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews Section (scrollable target) -->
+        <div id="reviews" style="margin-top: 40px;">
+            <h2 style="font-size: 1.5em; margin-bottom: 20px;">Customer Reviews</h2>
+            <!-- Reviews would go here - same as on main page -->
+            <div class="review-card" style="background: var(--cream); padding: 20px; border-radius: 12px; margin-bottom: 16px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                    <div>
+                        <div class="stars" style="color: #FFD700; margin-bottom: 8px;">★★★★★</div>
+                        <strong>Sarah M.</strong>
+                    </div>
+                    <span style="background: var(--blue); color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.85em; height: fit-content;">✓ Verified</span>
+                </div>
+                <p>"Best bikini I've ever owned! The reversible feature is genius and the fit is perfect. True to size!"</p>
+                <small style="color: #888; margin-top: 12px; display: block;">Purchased size M • 2 weeks ago</small>
+            </div>
+        </div>
+    </main>
+
+    <!-- Sticky Add-to-Cart Bar -->
+    <div class="sticky-bar visible" id="stickyBar">
+        <div class="sticky-bar-content">
+            <div class="sticky-price" id="stickyPrice">$89</div>
+            <button class="sticky-cta" id="addToCartBtn" onclick="addToCart()" disabled aria-label="Add to cart">
+                Select Size
+            </button>
+        </div>
+    </div>
+
+    <!-- Mini Cart Slide-over -->
+    <div class="mini-cart-overlay" id="miniCartOverlay" onclick="closeMiniCart()"></div>
+    <div class="mini-cart" id="miniCart">
+        <div class="mini-cart-header">
+            <div class="mini-cart-title">Added to Cart! 🎉</div>
+            <button class="mini-cart-close" onclick="closeMiniCart()" aria-label="Close cart">&times;</button>
+        </div>
+
+        <div class="cart-item" id="cartItemPreview">
+            <!-- Will be populated dynamically -->
+        </div>
+
+        <div class="mini-cart-actions">
+            <button class="checkout-btn" onclick="goToCheckout()">
+                Proceed to Checkout
+            </button>
+            <button class="continue-shopping" onclick="closeMiniCart()">
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast" role="alert" aria-live="polite">
+        <span class="toast-icon">✓</span>
+        <span id="toastMessage">Added to cart!</span>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Product data
+        const productData = {
+            id: 1,
+            name: 'Tropical Paradise Bikini',
+            basePrice: 89.00,
+            selectedColor: 'Coral Sunset',
+            selectedSize: null,
+            stock: {
+                'XS': 5,
+                'S': 12,
+                'M': 8,
+                'L': 15,
+                'XL': 3
+            }
+        };
+
+        // ========== IMAGE GALLERY ==========
+        let currentImageIndex = 0;
+        const imageContainer = document.getElementById('imageContainer');
+        const images = document.querySelectorAll('.gallery-image');
+        const dots = document.querySelectorAll('.dot');
+        let startX = 0;
+        let isDragging = false;
+
+        imageContainer.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+        });
+
+        imageContainer.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const currentX = e.touches[0].clientX;
+            const diff = startX - currentX;
+
+            if (Math.abs(diff) > 50) {
+                if (diff > 0 && currentImageIndex < images.length - 1) {
+                    currentImageIndex++;
+                } else if (diff < 0 && currentImageIndex > 0) {
+                    currentImageIndex--;
+                }
+                updateGallery();
+                isDragging = false;
+            }
+        });
+
+        function updateGallery() {
+            imageContainer.style.transform = `translateX(-${currentImageIndex * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentImageIndex);
+            });
+        }
+
+        // ========== ZOOM ==========
+        function openZoom(src) {
+            document.getElementById('zoomOverlay').classList.add('active');
+            document.getElementById('zoomImage').src = src;
+            document.body.style.overflow = 'hidden';
+
+            // Track analytics
+            trackEvent('image_zoom', {
+                product_id: productData.id,
+                product_name: productData.name,
+                image_index: currentImageIndex
+            });
+        }
+
+        function closeZoom() {
+            document.getElementById('zoomOverlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // ========== VARIANT SELECTION ==========
+        function selectColor(element, colorName) {
+            document.querySelectorAll('.color-swatch').forEach(btn => {
+                btn.classList.remove('selected');
+                btn.setAttribute('aria-pressed', 'false');
+            });
+            element.classList.add('selected');
+            element.setAttribute('aria-pressed', 'true');
+            productData.selectedColor = colorName;
+            document.getElementById('selectedColor').textContent = colorName;
+
+            // Track analytics
+            trackEvent('select_item', {
+                item_id: productData.id,
+                item_name: productData.name,
+                item_variant: colorName
+            });
+        }
+
+        function selectSize(element, size) {
+            document.querySelectorAll('.variant-btn').forEach(btn => {
+                btn.classList.remove('selected');
+                btn.setAttribute('aria-checked', 'false');
+            });
+            element.classList.add('selected');
+            element.setAttribute('aria-checked', 'true');
+            productData.selectedSize = size;
+            document.getElementById('selectedSize').textContent = size;
+
+            // Enable add to cart button
+            const addBtn = document.getElementById('addToCartBtn');
+            addBtn.disabled = false;
+            addBtn.textContent = 'Add to Cart';
+
+            // Update stock status
+            updateStockStatus(size);
+
+            // Track analytics
+            trackEvent('select_item', {
+                item_id: productData.id,
+                item_name: productData.name,
+                item_variant: `${productData.selectedColor} - ${size}`
+            });
+        }
+
+        function updateStockStatus(size) {
+            const stock = productData.stock[size];
+            const statusEl = document.getElementById('stockStatus');
+
+            if (stock > 10) {
+                statusEl.className = 'stock-status in-stock';
+                statusEl.innerHTML = '<span class="stock-dot"></span><span>In Stock - Ships within 2-3 business days</span>';
+            } else if (stock > 0) {
+                statusEl.className = 'stock-status low-stock';
+                statusEl.innerHTML = `<span class="stock-dot"></span><span>Low Stock - Only ${stock} left!</span>`;
+            } else {
+                statusEl.className = 'stock-status out-of-stock';
+                statusEl.innerHTML = '<span class="stock-dot"></span><span>Out of Stock - Notify me when available</span>';
+                document.getElementById('addToCartBtn').disabled = true;
+                document.getElementById('addToCartBtn').textContent = 'Out of Stock';
+            }
+        }
+
+        // ========== ADD TO CART ==========
+        function addToCart() {
+            if (!productData.selectedSize) {
+                showToast('Please select a size');
+                return;
+            }
+
+            // Show loading state
+            const btn = document.getElementById('addToCartBtn');
+            const originalText = btn.textContent;
+            btn.classList.add('loading');
+            btn.innerHTML = 'Adding... <span class="spinner"></span>';
+
+            // Simulate API call
+            setTimeout(() => {
+                btn.classList.remove('loading');
+                btn.textContent = originalText;
+
+                // Show mini cart
+                showMiniCart();
+
+                // Show toast
+                showToast('Added to cart!');
+
+                // Track analytics
+                trackEvent('add_to_cart', {
+                    currency: 'USD',
+                    value: productData.basePrice,
+                    items: [{
+                        item_id: productData.id,
+                        item_name: productData.name,
+                        item_variant: `${productData.selectedColor} - ${productData.selectedSize}`,
+                        price: productData.basePrice,
+                        quantity: 1
+                    }]
+                });
+            }, 800);
+        }
+
+        // ========== MINI CART ==========
+        function showMiniCart() {
+            const overlay = document.getElementById('miniCartOverlay');
+            const cart = document.getElementById('miniCart');
+
+            // Update cart item preview
+            document.getElementById('cartItemPreview').innerHTML = `
+                <img src="images/tropical-paradise.jpg" alt="${productData.name}" class="cart-item-image">
+                <div class="cart-item-details">
+                    <div class="cart-item-name">${productData.name}</div>
+                    <div class="cart-item-variant">${productData.selectedColor} • Size ${productData.selectedSize}</div>
+                    <div class="cart-item-price">$${productData.basePrice.toFixed(2)}</div>
+                </div>
+            `;
+
+            overlay.classList.add('active');
+            cart.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMiniCart() {
+            document.getElementById('miniCartOverlay').classList.remove('active');
+            document.getElementById('miniCart').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function goToCheckout() {
+            trackEvent('begin_checkout', {
+                currency: 'USD',
+                value: productData.basePrice,
+                items: [{
+                    item_id: productData.id,
+                    item_name: productData.name,
+                    item_variant: `${productData.selectedColor} - ${productData.selectedSize}`,
+                    price: productData.basePrice,
+                    quantity: 1
+                }]
+            });
+
+            // Redirect to checkout
+            window.location.href = 'index.html#checkout';
+        }
+
+        // ========== COLLAPSIBLE SECTIONS ==========
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const isOpen = section.classList.contains('open');
+
+            // Close all sections
+            document.querySelectorAll('.collapsible-section').forEach(s => s.classList.remove('open'));
+
+            // Open clicked section if it was closed
+            if (!isOpen) {
+                section.classList.add('open');
+                section.querySelector('.collapsible-header').setAttribute('aria-expanded', 'true');
+            } else {
+                section.querySelector('.collapsible-header').setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        // Make sections keyboard accessible
+        document.querySelectorAll('.collapsible-header').forEach(header => {
+            header.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    header.click();
+                }
+            });
+        });
+
+        // ========== TOAST NOTIFICATION ==========
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // ========== ANALYTICS TRACKING ==========
+        function trackEvent(eventName, eventData) {
+            // GA4 / GTM tracking
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, eventData);
+            }
+
+            // Also push to dataLayer for GTM
+            if (window.dataLayer) {
+                window.dataLayer.push({
+                    event: eventName,
+                    ...eventData
+                });
+            }
+
+            // Console log for development
+            console.log('Analytics Event:', eventName, eventData);
+        }
+
+        // ========== HELPER FUNCTIONS ==========
+        function openSizeGuide() {
+            // This would open the size guide modal from main site
+            window.open('index.html#size-guide', '_self');
+        }
+
+        function scrollToReviews() {
+            document.getElementById('reviews').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ========== PAGE LOAD ==========
+        window.addEventListener('DOMContentLoaded', () => {
+            // Track page view
+            trackEvent('view_item', {
+                currency: 'USD',
+                value: productData.basePrice,
+                items: [{
+                    item_id: productData.id,
+                    item_name: productData.name,
+                    price: productData.basePrice
+                }]
+            });
+
+            // Open first collapsible section by default
+            document.getElementById('descriptionSection').classList.add('open');
+        });
+
+        // ========== KEYBOARD ACCESSIBILITY ==========
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (document.getElementById('zoomOverlay').classList.contains('active')) {
+                    closeZoom();
+                } else if (document.getElementById('miniCart').classList.contains('active')) {
+                    closeMiniCart();
+                }
+            }
+        });
+    </script>
+
+    <!-- Schema.org Product Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "Tropical Paradise Bikini",
+      "image": "https://soldecoco.com/images/tropical-paradise.jpg",
+      "description": "Reversible bikini set with tropical vibes. Hand-crafted with sustainable materials.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Sol de Coco"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://soldecoco.com/product-detail.html",
+        "priceCurrency": "USD",
+        "price": "89.00",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "Sol de Coco"
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "24"
+      }
+    }
+    </script>
+</body>
+</html>

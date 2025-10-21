@@ -1613,14 +1613,17 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Sol de Coco</h1>
-            <p class="tagline">tropical vibes. summer forever.</p>
-            <p class="subtitle">Hand-crafted swimwear for the girls who live for beach days ☀️</p>
-            <a href="#shop" class="cta-button">Shop The Collection</a>
+            <p class="tagline">Bikinis that actually fit. 🌴 Made for real girls, not just IG.</p>
+            <p class="subtitle">Reversible. Sustainable. Handmade with love. Because you deserve options, babe ✨</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+                <a href="#shop" class="cta-button">Shop Bikinis</a>
+                <a href="quiz.html" class="cta-button" style="background: white; color: var(--coral); border: 2px solid var(--coral);">Find Your Perfect Fit ✨</a>
+            </div>
         </div>
     </section>
 
     <div class="social-proof">
-        <p>✨ <strong>2,500+</strong> babes rocking Sol de Coco worldwide | Free shipping on orders over $100</p>
+        <p>💕 <strong>1,000+</strong> happy beach babes | ⭐ 5.0 Rating | 🌍 100% Sustainable | 🚚 Free Shipping $75+</p>
     </div>
 
     <section class="products" id="shop">
@@ -1629,14 +1632,14 @@
             <p class="section-subtitle">Every piece hand-crafted with love ♡</p>
         </div>
         <div class="product-grid">
-            <div class="product-card" data-product="1">
+            <div class="product-card" data-product="1" onclick="window.location.href='product-detail.html'" style="cursor: pointer;">
                 <div class="product-image-container">
                     <button class="wishlist-btn" onclick="toggleWishlist(event, 1)">♡</button>
                     <div class="product-image">
                         <img src="images/tropical-paradise.jpg" alt="Tropical Paradise Bikini">
                     </div>
                     <div class="quick-add-overlay">
-                        <div class="quick-add-text">Click to choose your size ⬇️</div>
+                        <div class="quick-add-text">Tap to view details ✨</div>
                     </div>
                 </div>
                 <div class="product-info">
@@ -1929,6 +1932,113 @@
                 Follow Us on Instagram 📷
             </button>
         </div>
+    </section>
+
+    <!-- Founder's Story Section -->
+    <section style="padding: 80px 5%; background: linear-gradient(135deg, var(--cream) 0%, var(--light-blue) 100%); position: relative; overflow: hidden;">
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <div class="section-header" style="text-align: center; margin-bottom: 50px;">
+                <h2 class="section-title" style="font-size: 2.5em;">Meet The Founder 🌺</h2>
+                <p class="section-subtitle" style="font-size: 1.2em; max-width: 700px; margin: 0 auto;">
+                    From beach girl to bikini boss - this is how Sol de Coco came to life
+                </p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+                <!-- Founder Image -->
+                <div style="position: relative;">
+                    <div style="width: 100%; aspect-ratio: 3/4; background: linear-gradient(135deg, var(--pink), var(--lavender)); border-radius: 30px; display: flex; align-items: center; justify-content: center; font-size: 6em; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
+                        👩‍🦱
+                        <!-- Replace with actual founder photo when available:
+                        <img src="images/founder.jpg" alt="Founder" style="width: 100%; height: 100%; object-fit: cover; border-radius: 30px;">
+                        -->
+                    </div>
+                    <div style="position: absolute; top: -20px; right: -20px; background: white; padding: 20px 30px; border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transform: rotate(8deg);">
+                        <span style="font-size: 2em;">☀️</span>
+                    </div>
+                </div>
+
+                <!-- Founder Story -->
+                <div style="color: var(--dark);">
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 2em; margin-bottom: 20px; color: var(--coral);">
+                        Hey Babe! I'm [Your Name] 👋
+                    </h3>
+                    <p style="font-size: 1.1em; line-height: 1.8; margin-bottom: 20px;">
+                        Real talk: I was TIRED of spending $$$ on bikinis that didn't fit right, weren't sustainable, and honestly? Kinda boring.
+                    </p>
+                    <p style="font-size: 1.1em; line-height: 1.8; margin-bottom: 20px;">
+                        So one day, literally on a beach in Bali (I know, so cliché 😂), I decided to create the bikini brand I WISH existed.
+                    </p>
+                    <p style="font-size: 1.1em; line-height: 1.8; margin-bottom: 20px;">
+                        Every Sol de Coco piece is:
+                    </p>
+                    <ul style="font-size: 1.05em; line-height: 2; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 12px;">
+                            <span style="color: var(--coral); font-weight: 700; margin-right: 8px;">✓</span>
+                            Hand-made with love (seriously, I quality-check EVERY piece)
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <span style="color: var(--coral); font-weight: 700; margin-right: 8px;">✓</span>
+                            Sustainably sourced (Mother Earth says thank you 🌍)
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <span style="color: var(--coral); font-weight: 700; margin-right: 8px;">✓</span>
+                            Actually designed for REAL bodies (not just Instagram models)
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <span style="color: var(--coral); font-weight: 700; margin-right: 8px;">✓</span>
+                            Reversible because OPTIONS (two looks, one price!)
+                        </li>
+                    </ul>
+                    <p style="font-size: 1.1em; line-height: 1.8; margin-top: 30px; font-style: italic; color: #666;">
+                        "Life's a beach, and you deserve a bikini that makes you feel like the goddess you are."
+                    </p>
+                    <p style="font-size: 1.2em; margin-top: 20px; font-weight: 700; color: var(--coral);">
+                        xx [Your Name]
+                    </p>
+                    <p style="font-size: 0.95em; color: #888; margin-top: 8px;">
+                        Founder & Chief Beach Babe
+                    </p>
+                </div>
+            </div>
+
+            <!-- Fun Stats -->
+            <div style="margin-top: 80px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center;">
+                <div style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <div style="font-size: 3em; margin-bottom: 10px;">🌴</div>
+                    <div style="font-size: 2.5em; font-weight: 700; color: var(--coral); margin-bottom: 5px;">1000+</div>
+                    <div style="font-size: 1em; color: #666;">Happy Beach Babes</div>
+                </div>
+                <div style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <div style="font-size: 3em; margin-bottom: 10px;">♻️</div>
+                    <div style="font-size: 2.5em; font-weight: 700; color: var(--coral); margin-bottom: 5px;">100%</div>
+                    <div style="font-size: 1em; color: #666;">Sustainable Materials</div>
+                </div>
+                <div style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <div style="font-size: 3em; margin-bottom: 10px;">⭐</div>
+                    <div style="font-size: 2.5em; font-weight: 700; color: var(--coral); margin-bottom: 5px;">5.0</div>
+                    <div style="font-size: 1em; color: #666;">Average Rating</div>
+                </div>
+                <div style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <div style="font-size: 3em; margin-bottom: 10px;">💕</div>
+                    <div style="font-size: 2.5em; font-weight: 700; color: var(--coral); margin-bottom: 5px;">30 Day</div>
+                    <div style="font-size: 1em; color: #666;">Free Returns</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Optimization -->
+        <style>
+            @media (max-width: 768px) {
+                [style*="grid-template-columns: 1fr 1fr"] {
+                    grid-template-columns: 1fr !important;
+                    gap: 40px !important;
+                }
+                [style*="aspect-ratio: 3/4"] {
+                    aspect-ratio: 1 !important;
+                }
+            }
+        </style>
     </section>
 
     <footer>
