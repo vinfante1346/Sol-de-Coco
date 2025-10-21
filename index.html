@@ -2096,8 +2096,13 @@
     </footer>
 
     <script>
-        let cart = [];
-        let selectedSizes = {1: 'M', 2: 'M', 3: 'M', 4: 'M', 5: 'M', 6: 'M'};
+        // Make cart and selectedSizes globally accessible
+        window.cart = [];
+        window.selectedSizes = {1: 'M', 2: 'M', 3: 'M', 4: 'M', 5: 'M', 6: 'M'};
+
+        // Shorthand references for internal use
+        let cart = window.cart;
+        let selectedSizes = window.selectedSizes;
 
         function selectSize(event, productId, size) {
             // Remove selected class from all size buttons in this product
@@ -2171,6 +2176,13 @@
             modal.classList.toggle('active');
         }
 
+        // Expose functions globally for shopify-config.js
+        window.selectSize = selectSize;
+        window.addToCart = addToCart;
+        window.removeFromCart = removeFromCart;
+        window.updateCart = updateCart;
+        window.toggleCart = toggleCart;
+
         // ========== WISHLIST FUNCTIONALITY ==========
         let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
@@ -2236,6 +2248,9 @@
             }
         }
 
+        // Expose globally
+        window.toggleMobileMenu = toggleMobileMenu;
+
         function renderWishlist() {
             const container = document.getElementById('wishlistItems');
 
@@ -2285,6 +2300,14 @@
             showToast('Removed from wishlist');
         }
 
+        // Expose wishlist functions globally
+        window.toggleWishlist = toggleWishlist;
+        window.openWishlist = openWishlist;
+        window.closeWishlist = closeWishlist;
+        window.renderWishlist = renderWishlist;
+        window.removeFromWishlist = removeFromWishlist;
+        window.updateWishlistCount = updateWishlistCount;
+
         // Initialize wishlist on page load
         window.addEventListener('DOMContentLoaded', () => {
             updateWishlistCount();
@@ -2309,12 +2332,18 @@
             }, 3000);
         }
 
+        // Expose showToast globally
+        window.showToast = showToast;
+
         function subscribeNewsletter(event) {
             event.preventDefault();
             showToast('Welcome to the fam! Check your email for 15% off ✨');
             event.target.reset();
             return false;
         }
+
+        // Expose globally
+        window.subscribeNewsletter = subscribeNewsletter;
 
         function checkout() {
             // Check if Shopify checkout is available (will be overridden by shopify-config.js if configured)
@@ -2336,6 +2365,9 @@
             console.log('Cart contents:', cart);
             console.log('To enable checkout: Follow the guide in SHOPIFY-SETUP.md');
         }
+
+        // Expose globally (can be overridden by shopify-config.js)
+        window.checkout = checkout;
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
