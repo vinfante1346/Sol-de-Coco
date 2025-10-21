@@ -2317,15 +2317,24 @@
         }
 
         function checkout() {
+            // Check if Shopify checkout is available (will be overridden by shopify-config.js if configured)
+            const checkoutUrl = localStorage.getItem('shopify_checkout_url');
+
+            if (checkoutUrl) {
+                // Shopify checkout is ready
+                window.location.href = checkoutUrl;
+                return;
+            }
+
             if (cart.length === 0) {
                 showToast('Your cart is empty!');
                 return;
             }
-            showToast('Redirecting to checkout... 🌴');
-            // This is where you'd integrate Stripe
-            setTimeout(() => {
-                alert('Stripe checkout integration goes here!\n\nFor demo purposes only. To add real payments:\n1. Sign up at stripe.com\n2. Add Stripe.js\n3. Create checkout session\n\nSee README.md for details.');
-            }, 1000);
+
+            // Show message that Shopify setup is needed
+            showToast('Ready to enable checkout! Check SHOPIFY-SETUP.md to complete setup 🌴');
+            console.log('Cart contents:', cart);
+            console.log('To enable checkout: Follow the guide in SHOPIFY-SETUP.md');
         }
 
         // Smooth scroll
@@ -2438,6 +2447,18 @@
             trackEvent('size_guide_opened');
             document.getElementById('sizeGuideModal').classList.add('show');
         };
+
+        // Make closeSizeGuide accessible globally
+        window.closeSizeGuide = function() {
+            document.getElementById('sizeGuideModal').classList.remove('show');
+        };
+
+        // Close size guide when clicking outside
+        document.getElementById('sizeGuideModal')?.addEventListener('click', function(e) {
+            if (e.target === this) {
+                window.closeSizeGuide();
+            }
+        });
 
     </script>
 

@@ -203,6 +203,8 @@ if (SHOPIFY_CONFIG.IS_CONFIGURED) {
 
 // Enhanced addToCart function that works with Shopify
 async function addToCartWithShopify(name, price, productId) {
+    // Access global variables from index.html
+    const selectedSizes = window.selectedSizes || {};
     const size = selectedSizes[productId];
 
     if (!SHOPIFY_CONFIG.IS_CONFIGURED || !shopifyClient) {
@@ -230,7 +232,9 @@ async function addToCartWithShopify(name, price, productId) {
         updateLocalCartFromShopify(checkout);
 
         // Show success message
-        showToast(`${name} (Size ${size}) added to cart! 🎉`);
+        if (typeof window.showToast === 'function') {
+            window.showToast(`${name} (Size ${size}) added to cart! 🎉`);
+        }
 
         // Track analytics
         if (typeof gtag !== 'undefined') {
@@ -249,7 +253,9 @@ async function addToCartWithShopify(name, price, productId) {
 
     } catch (error) {
         console.error('Error adding to cart:', error);
-        showToast('Oops! Something went wrong. Please try again.');
+        if (typeof window.showToast === 'function') {
+            window.showToast('Oops! Something went wrong. Please try again.');
+        }
     }
 }
 
@@ -297,14 +303,23 @@ function updateLocalCartFromShopify(checkout) {
 
 // Local cart fallback (existing functionality)
 function addToCartLocal(name, price, productId) {
+    const selectedSizes = window.selectedSizes || {};
+    const cart = window.cart || [];
     const size = selectedSizes[productId];
+
     cart.push({
         name: name,
         price: price,
         size: size
     });
-    updateCart();
-    showToast(`${name} (Size ${size}) added to cart! 🎉`);
+
+    if (typeof window.updateCart === 'function') {
+        window.updateCart();
+    }
+
+    if (typeof window.showToast === 'function') {
+        window.showToast(`${name} (Size ${size}) added to cart! 🎉`);
+    }
 }
 
 // Enhanced checkout function
@@ -323,12 +338,16 @@ function checkout() {
 
             window.location.href = checkoutUrl;
         } else {
-            showToast('Please add items to your cart first!');
+            if (typeof window.showToast === 'function') {
+                window.showToast('Please add items to your cart first!');
+            }
         }
     } else {
         // Local checkout (placeholder)
-        showToast('Checkout functionality will be available soon! 🌴');
-        console.log('Cart contents:', cart);
+        if (typeof window.showToast === 'function') {
+            window.showToast('Checkout functionality will be available soon! 🌴');
+        }
+        console.log('Cart contents:', window.cart || []);
     }
 }
 
