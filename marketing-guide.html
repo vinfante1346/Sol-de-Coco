@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sol de Coco - Interactive Marketing Guide</title>
+    <meta property="og:title" content="Sol de Coco - Marketing Strategy & Brand Guidelines">
+    <meta property="og:description" content="Complete marketing strategy and brand guidelines for Sol de Coco tropical swimwear">
+    <meta property="og:image" content="https://vinfante1346.github.io/Sol-de-Coco/og-image.png">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --coral: #fa5b26;
+            --blue: #6092b9;
+            --pink: #f5bce9;
+            --cream: #f8f0d6;
+            --light-blue: #c7dcf9;
+            --lavender: #efe2f3;
+            --olive: #ada335;
+            --dark: #2a2a2a;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #1a1a1a;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* Floating Share Button */
+        .share-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--coral);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(250, 91, 38, 0.3);
+        }
+
+        .share-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(250, 91, 38, 0.5);
+        }
+
+        /* Share Modal */
+        .share-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .share-modal.active {
+            display: flex;
+        }
+
+        .share-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            color: var(--dark);
+        }
+
+        .share-title {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: var(--coral);
+        }
+
+        .share-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .share-option {
+            background: var(--cream);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .share-option:hover {
+            border-color: var(--coral);
+            transform: translateY(-3px);
+        }
+
+        .share-option-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .share-option-text {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .close-share {
+            background: var(--dark);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            color: white;
+            padding: 18px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 3000;
+            transition: bottom 0.4s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .toast.show {
+            bottom: 30px;
+        }
+
+        /* Navigation */
+        .nav-menu {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 15px;
+            border-radius: 15px;
+            z-index: 1000;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-dot.active {
+            background: var(--coral);
+            transform: scale(1.5);
+        }
+
+        .nav-dot:hover {
+            background: var(--coral);
+        }
+
+        /* Sections */
+        .section {
+            min-height: 100vh;
+            padding: 100px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-content {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5em;
+            font-style: italic;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        /* Color Swatches */
+        .brand-colors {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .color-swatch {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .color-swatch:hover {
+            transform: translateY(-5px);
+        }
+
+        .color-box {
+            width: 100%;
+            height: 150px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .color-box:hover {
+            border-color: var(--coral);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .copy-hint {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9em;
+        }
+
+        .color-box:hover .copy-hint {
+            opacity: 1;
+        }
+
+        .color-name {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .color-hex {
+            font-size: 1em;
+            opacity: 0.7;
+            font-family: monospace;
+        }
+
+        /* Channel Grid */
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .channel {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .channel:hover {
+            border-color: var(--coral);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .channel-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .channel-name {
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--coral);
+        }
+
+        /* Download Button */
+        .download-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--blue);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(96, 146, 185, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(96, 146, 185, 0.5);
+        }
+
+        /* Backgrounds */
+        .bg-gradient-1 {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--lavender) 50%, var(--pink) 100%);
+        }
+
+        .bg-cream {
+            background: var(--cream);
+            color: var(--dark);
+        }
+
+        .bg-gradient-2 {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--blue) 100%);
+        }
+
+        .bg-dark {
+            background: var(--dark);
+        }
+
+        .bg-gradient-3 {
+            background: linear-gradient(135deg, #1a1a1a 0%, var(--dark) 100%);
+        }
+
+        .bg-gradient-4 {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--dark) 100%);
+        }
+
+        .bg-gradient-5 {
+            background: linear-gradient(135deg, var(--pink) 0%, var(--lavender) 100%);
+        }
+
+        ul {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        li {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        li:before {
+            content: '☀️';
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 5px solid var(--coral);
+            margin-top: 30px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .stat-box {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            transition: transform 0.3s;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 4em;
+            font-weight: 700;
+            color: var(--coral);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            h1 {
+                font-size: 3em;
+            }
+
+            h2 {
+                font-size: 2.5em;
+            }
+
+            .brand-colors,
+            .channel-grid,
+            .two-column,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .share-button,
+            .download-btn {
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Share Button -->
+    <button class="share-button" onclick="toggleShare()">📤 Share</button>
+
+    <!-- Download Button -->
+    <button class="download-btn" onclick="downloadPDF()">📥 Download PDF</button>
+
+    <!-- Navigation Dots -->
+    <div class="nav-menu" id="navMenu"></div>
+
+    <!-- Share Modal -->
+    <div class="share-modal" id="shareModal">
+        <div class="share-content">
+            <h2 class="share-title">Share this guide</h2>
+            <div class="share-options">
+                <div class="share-option" onclick="shareTwitter()">
+                    <div class="share-option-icon">🐦</div>
+                    <div class="share-option-text">Twitter</div>
+                </div>
+                <div class="share-option" onclick="shareLinkedIn()">
+                    <div class="share-option-icon">💼</div>
+                    <div class="share-option-text">LinkedIn</div>
+                </div>
+                <div class="share-option" onclick="shareFacebook()">
+                    <div class="share-option-icon">📘</div>
+                    <div class="share-option-text">Facebook</div>
+                </div>
+                <div class="share-option" onclick="shareEmail()">
+                    <div class="share-option-icon">📧</div>
+                    <div class="share-option-text">Email</div>
+                </div>
+                <div class="share-option" onclick="copyLink()">
+                    <div class="share-option-icon">🔗</div>
+                    <div class="share-option-text">Copy Link</div>
+                </div>
+                <div class="share-option" onclick="shareWhatsApp()">
+                    <div class="share-option-icon">💬</div>
+                    <div class="share-option-text">WhatsApp</div>
+                </div>
+            </div>
+            <button class="close-share" onclick="toggleShare()">Close</button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span id="toastMessage">Copied to clipboard!</span>
+    </div>
+
+    <!-- Section 1: Title -->
+    <section class="section bg-gradient-1" id="section-0">
+        <div class="section-content" style="text-align: center;">
+            <h1 style="color: var(--coral);">Sol de Coco</h1>
+            <p style="font-size: 2em; font-style: italic; color: var(--blue); margin-bottom: 60px;">tropical vibes. summer forever.</p>
+            <p style="font-size: 1.8em; color: var(--dark);">Interactive Marketing Guide & Brand Guidelines</p>
+            <p style="font-size: 1.2em; margin-top: 20px; color: var(--dark); opacity: 0.7;">Click colors to copy • Share with team • Download as PDF</p>
+        </div>
+    </section>
+
+    <!-- Section 2: Brand Colors -->
+    <section class="section bg-cream" id="section-1">
+        <div class="section-content">
+            <h2 style="color: var(--coral);">Brand Color Palette</h2>
+            <p style="color: var(--dark);">Click any color to copy the hex code</p>
+
+            <div class="brand-colors">
+                <div class="color-swatch" onclick="copyColor('#f5bce9', 'Pink')">
+                    <div class="color-box" style="background: #f5bce9;">
+                        <div class="copy-hint">Click to copy</div>
+                    </div>
+                    <div class="color-name" style="color: var(--dark);">Pink</div>
+                    <div class="color-hex" style="color: var(--dark);">#f5bce9</div>
+                </div>
+                <div class="color-swatch" onclick="copyColor('#f8f0d6', 'Cream')">
+                    <div class="color-box" style="background: #f8f0d6;">
+                        <div class="copy-hint">Click to copy</div>
+                    </div>
+                    <div class="color-name" style="color: var(--dark);">Cream</div>
+                    <div class="color-hex" style="color: var(--dark);">#f8f0d6</div>
+                </div>
+                <div class="color-swatch" onclick="copyColor('#ada335', 'Olive')">
+                    <div class="color-box" style="background: #ada335;">
+                        <div class="copy-hint">Click to copy</div>
+                    </div>
+                    <div class="color-name" style="color: var(--dark);">Olive</div>
+                    <div class="color-hex" style="color: var(--dark);">#ada335</div>
+                </div>
+                <div class="color-swatch" onclick="copyColor('#efe2f3', 'Lavender')">
+                    <div class="color-box" style="background: #efe2f3;">
+                        <div class="copy-hint">Click to copy</div>
+                    </div>
+                    <div class="color-name" style="color: var(--dark);">Lavender</div>
+                    <div class="color-hex" style="color: var(--dark);">#efe2f3</div>
+                </div>
+                <div class="color-swatch" onclick="copyColor('#c7dcf9', 'Light Blue')">
+                    <div class="color-box" style="background: #c7dcf9;">
+                        <div class="copy-hint">Click to copy</div>
+                    </div>
+                    <div class="color-name" style="color: var(--dark);">Light Blue</div>
+                    <div class="color-hex" style="color: var(--dark);">#c7dcf9</div>
+                </div>
+                <div class="color-swatch" onclick="copyColor('#fa5b26', 'Coral')">
+                    <div class="color-box" style="background: #fa5b26;">
+                        <div class="copy-hint">Click to copy</div>
+                    </div>
+                    <div class="color-name" style="color: var(--dark);">Coral</div>
+                    <div class="color-hex" style="color: var(--dark);">#fa5b26</div>
+                </div>
+                <div class="color-swatch" onclick="copyColor('#6092b9', 'Blue')">
+                    <div class="color-box" style="background: #6092b9;">
+                        <div class="copy-hint">Click to copy</div>
+                    </div>
+                    <div class="color-name" style="color: var(--dark);">Blue</div>
+                    <div class="color-hex" style="color: var(--dark);">#6092b9</div>
+                </div>
+                <div class="color-swatch" onclick="copyColor('#2a2a2a', 'Dark')">
+                    <div class="color-box" style="background: #2a2a2a;">
+                        <div class="copy-hint">Click to copy</div>
+                    </div>
+                    <div class="color-name" style="color: var(--dark);">Dark</div>
+                    <div class="color-hex" style="color: var(--dark);">#2a2a2a</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Target Audience -->
+    <section class="section bg-gradient-2" id="section-2">
+        <div class="section-content">
+            <h2>Target Audience</h2>
+            <p style="font-size: 1.5em; margin-bottom: 40px;">Beach-loving babes who live for summer vibes</p>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number">17-36</div>
+                    <div class="stat-label">Age Range</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">Gen Z</div>
+                    <div class="stat-label">Primary Demo</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">TikTok</div>
+                    <div class="stat-label">Main Platform</div>
+                </div>
+            </div>
+
+            <div class="two-column" style="margin-top: 60px;">
+                <div>
+                    <h3>They Value</h3>
+                    <ul style="font-size: 1.2em;">
+                        <li>Authenticity over perfection</li>
+                        <li>Sustainability & ethics</li>
+                        <li>Unique, handcrafted pieces</li>
+                        <li>Community & connection</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>They Love</h3>
+                    <ul style="font-size: 1.2em;">
+                        <li>Beach days & tropical vacations</li>
+                        <li>Instagram-worthy moments</li>
+                        <li>Small businesses with stories</li>
+                        <li>Affordable luxury</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Marketing Channels -->
+    <section class="section bg-dark" id="section-3">
+        <div class="section-content">
+            <h2 style="color: var(--coral);">Marketing Channels</h2>
+            <p style="font-size: 1.4em; margin-bottom: 40px;">Where we'll reach our audience</p>
+
+            <div class="channel-grid">
+                <div class="channel">
+                    <div class="channel-icon">🎵</div>
+                    <div class="channel-name">TikTok</div>
+                    <p style="font-size: 1em; opacity: 0.7;">2-3 posts daily<br>Try-ons, BTS, lifestyle</p>
+                </div>
+                <div class="channel">
+                    <div class="channel-icon">📷</div>
+                    <div class="channel-name">Instagram</div>
+                    <p style="font-size: 1em; opacity: 0.7;">Reels, Stories, Shopping<br>4-5 posts/week</p>
+                </div>
+                <div class="channel">
+                    <div class="channel-icon">📌</div>
+                    <div class="channel-name">Pinterest</div>
+                    <p style="font-size: 1em; opacity: 0.7;">10-15 pins/day<br>SEO traffic driver</p>
+                </div>
+                <div class="channel">
+                    <div class="channel-icon">📧</div>
+                    <div class="channel-name">Email</div>
+                    <p style="font-size: 1em; opacity: 0.7;">Automation flows<br>2-3 campaigns/week</p>
+                </div>
+                <div class="channel">
+                    <div class="channel-icon">💰</div>
+                    <div class="channel-name">Paid Ads</div>
+                    <p style="font-size: 1em; opacity: 0.7;">TikTok, FB, IG, Google<br>$2.5K/month budget</p>
+                </div>
+                <div class="channel">
+                    <div class="channel-icon">⭐</div>
+                    <div class="channel-name">Influencers</div>
+                    <p style="font-size: 1em; opacity: 0.7;">Micro-influencers<br>1K-50K followers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Call to Action -->
+    <section class="section bg-gradient-2" id="section-4">
+        <div class="section-content" style="text-align: center;">
+            <h1 style="color: white; margin-bottom: 40px;">Ready to Launch?</h1>
+            <p style="font-size: 2em; font-style: italic; margin-bottom: 60px;">tropical vibes. summer forever. ☀️</p>
+
+            <div class="box" style="text-align: left;">
+                <h3 style="color: var(--coral); margin-bottom: 30px;">Next Steps</h3>
+                <ul style="font-size: 1.3em;">
+                    <li>Review complete marketing strategy document</li>
+                    <li>Set up all social media accounts</li>
+                    <li>Create 30 days of content in advance</li>
+                    <li>Launch website & build email list</li>
+                    <li>Start posting & building community</li>
+                    <li>Begin influencer outreach</li>
+                </ul>
+            </div>
+
+            <p style="font-size: 1.3em; margin-top: 60px; opacity: 0.8;">Share this guide with your team using the button above 👆</p>
+        </div>
+    </section>
+
+    <script>
+        // Copy color to clipboard
+        function copyColor(hex, name) {
+            navigator.clipboard.writeText(hex).then(() => {
+                showToast(`${name} color ${hex} copied to clipboard!`);
+            });
+        }
+
+        // Toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Share modal
+        function toggleShare() {
+            const modal = document.getElementById('shareModal');
+            modal.classList.toggle('active');
+        }
+
+        // Share functions
+        const pageUrl = window.location.href;
+        const pageTitle = 'Sol de Coco - Marketing Strategy & Brand Guidelines';
+        const pageDescription = 'Complete marketing strategy and brand guidelines for Sol de Coco tropical swimwear';
+
+        function shareTwitter() {
+            window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(pageTitle)}`, '_blank');
+        }
+
+        function shareLinkedIn() {
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`, '_blank');
+        }
+
+        function shareFacebook() {
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`, '_blank');
+        }
+
+        function shareEmail() {
+            window.location.href = `mailto:?subject=${encodeURIComponent(pageTitle)}&body=${encodeURIComponent(pageDescription + '\n\n' + pageUrl)}`;
+        }
+
+        function shareWhatsApp() {
+            window.open(`https://wa.me/?text=${encodeURIComponent(pageTitle + ' - ' + pageUrl)}`, '_blank');
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(pageUrl).then(() => {
+                showToast('Link copied to clipboard!');
+                toggleShare();
+            });
+        }
+
+        // Download as PDF
+        function downloadPDF() {
+            showToast('Press Cmd+P (Mac) or Ctrl+P (Windows) and choose "Save as PDF"');
+            setTimeout(() => {
+                window.print();
+            }, 1000);
+        }
+
+        // Create navigation dots
+        const sections = document.querySelectorAll('.section');
+        const navMenu = document.getElementById('navMenu');
+
+        sections.forEach((section, index) => {
+            const dot = document.createElement('div');
+            dot.className = 'nav-dot';
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                section.scrollIntoView({ behavior: 'smooth' });
+            });
+            navMenu.appendChild(dot);
+        });
+
+        // Update active nav dot on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - sectionHeight / 3) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            const dots = document.querySelectorAll('.nav-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.remove('active');
+                if (current === `section-${index}`) {
+                    dot.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
