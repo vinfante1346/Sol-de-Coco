@@ -28,40 +28,39 @@
             background: linear-gradient(135deg, var(--cream) 0%, var(--light-blue) 100%);
             overflow-x: hidden;
             color: var(--dark);
+            scroll-behavior: smooth;
         }
 
         .slide-container {
             width: 100%;
-            height: 100vh;
-            overflow: hidden;
             position: relative;
         }
 
         .slide {
             width: 100%;
-            height: 100vh;
-            display: none;
+            min-height: 100vh;
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 60px;
+            padding: 100px 60px;
             position: relative;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--lavender) 100%);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide:nth-child(odd) {
             background: linear-gradient(135deg, var(--cream) 0%, var(--lavender) 100%);
         }
 
-        .slide.active {
-            display: flex;
-            animation: slideIn 0.6s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(100px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        .slide:nth-child(even) {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--pink) 20%, var(--cream) 100%);
         }
 
         .slide-content {
@@ -126,48 +125,50 @@
             font-size: 1.5rem;
         }
 
-        .navigation {
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--coral), var(--pink), var(--blue));
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+
+        .scroll-indicator {
             position: fixed;
             bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
-            display: flex;
-            gap: 20px;
-            z-index: 1000;
-        }
-
-        .nav-btn {
-            background: white;
-            border: 3px solid var(--coral);
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            font-family: 'Grandstander', cursive;
-            color: var(--coral);
-            transition: all 0.3s;
-        }
-
-        .nav-btn:hover {
-            background: var(--coral);
-            color: white;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(250, 91, 38, 0.3);
-        }
-
-        .slide-number {
-            position: fixed;
-            top: 40px;
-            right: 40px;
             background: white;
             padding: 15px 30px;
             border-radius: 50px;
             font-weight: 700;
             color: var(--dark);
-            font-size: 1.2rem;
+            font-size: 1rem;
             z-index: 1000;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            animation: bounce 2s infinite;
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+
+        .scroll-indicator.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
         }
 
         .stats-grid {
@@ -319,7 +320,8 @@
 
         @media (max-width: 768px) {
             .slide {
-                padding: 30px 20px;
+                padding: 60px 20px;
+                min-height: auto;
             }
 
             .slide h1 {
@@ -338,26 +340,37 @@
                 font-size: 1rem;
             }
 
-            .nav-btn {
-                padding: 10px 25px;
-                font-size: 1rem;
+            .scroll-indicator {
+                bottom: 20px;
+                padding: 10px 20px;
+                font-size: 0.9rem;
             }
 
-            .slide-number {
-                top: 20px;
-                right: 20px;
-                padding: 10px 20px;
-                font-size: 1rem;
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                flex-direction: column;
+            }
+
+            .channel-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .phase-box {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="slide-number" id="slideNumber">1 / 18</div>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="scroll-indicator" id="scrollIndicator">Scroll to explore ↓</div>
 
     <div class="slide-container">
         <!-- Slide 1: Title -->
-        <div class="slide active">
+        <div class="slide">
             <div class="float-circle" style="width: 400px; height: 400px; background: var(--pink); top: -100px; left: -100px;"></div>
             <div class="float-circle" style="width: 300px; height: 300px; background: var(--blue); bottom: -50px; right: -50px; animation-delay: -5s;"></div>
             <div class="slide-content">
@@ -922,66 +935,47 @@
         </div>
     </div>
 
-    <div class="navigation">
-        <button class="nav-btn" onclick="previousSlide()">← Previous</button>
-        <button class="nav-btn" onclick="nextSlide()">Next →</button>
-    </div>
-
     <script>
-        let currentSlide = 0;
+        // Intersection Observer for scroll animations
         const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
+        const progressBar = document.getElementById('progressBar');
+        const scrollIndicator = document.getElementById('scrollIndicator');
 
-        function showSlide(n) {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (n + totalSlides) % totalSlides;
-            slides[currentSlide].classList.add('active');
-            updateSlideNumber();
-        }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px'
+        });
 
-        function nextSlide() {
-            showSlide(currentSlide + 1);
-        }
+        slides.forEach(slide => {
+            observer.observe(slide);
+        });
 
-        function previousSlide() {
-            showSlide(currentSlide - 1);
-        }
+        // Progress bar on scroll
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollPercentage = (scrollTop / (documentHeight - windowHeight)) * 100;
 
-        function updateSlideNumber() {
-            document.getElementById('slideNumber').textContent = `${currentSlide + 1} / ${totalSlides}`;
-        }
+            progressBar.style.width = scrollPercentage + '%';
 
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' || e.key === ' ') {
-                e.preventDefault();
-                nextSlide();
-            } else if (e.key === 'ArrowLeft') {
-                e.preventDefault();
-                previousSlide();
+            // Hide scroll indicator after scrolling starts
+            if (scrollTop > 100) {
+                scrollIndicator.classList.add('hidden');
+            } else {
+                scrollIndicator.classList.remove('hidden');
             }
         });
 
-        // Touch navigation for mobile
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        document.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        document.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            if (touchEndX < touchStartX - 50) {
-                nextSlide();
-            }
-            if (touchEndX > touchStartX + 50) {
-                previousSlide();
-            }
+        // Show first slide immediately
+        if (slides.length > 0) {
+            slides[0].classList.add('visible');
         }
     </script>
 </body>
