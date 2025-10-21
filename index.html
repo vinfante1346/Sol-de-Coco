@@ -412,20 +412,24 @@
             border-radius: 10px;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: border-color 0.2s, transform 0.1s;
             font-size: 0.95em;
         }
 
-        .size-btn:hover {
+        .size-btn:hover:not(.selected) {
             border-color: var(--coral);
-            background: var(--coral);
-            color: white;
+            transform: translateY(-1px);
         }
 
         .size-btn.selected {
             border-color: var(--coral);
             background: var(--coral);
             color: white;
+            transition: none;
+        }
+
+        .size-btn:active {
+            transform: scale(0.98);
         }
 
         .add-to-cart {
@@ -880,20 +884,25 @@
 
         /* Size Guide Modal */
         .size-guide-modal {
-            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0);
             z-index: 3500;
+            display: flex;
             align-items: center;
             justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
         .size-guide-modal.show {
-            display: flex;
+            opacity: 1;
+            visibility: visible;
+            background: rgba(0, 0, 0, 0.7);
         }
 
         .size-guide-content {
@@ -905,6 +914,12 @@
             max-height: 85vh;
             overflow-y: auto;
             position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .size-guide-modal.show .size-guide-content {
+            transform: scale(1);
         }
 
         .size-chart {
@@ -2105,8 +2120,13 @@
         let selectedSizes = window.selectedSizes;
 
         function selectSize(event, productId, size) {
+            // Prevent event bubbling
+            event.stopPropagation();
+
             // Remove selected class from all size buttons in this product
             const productCard = event.target.closest('.product-card');
+            if (!productCard) return;
+
             const sizeButtons = productCard.querySelectorAll('.size-btn');
             sizeButtons.forEach(btn => btn.classList.remove('selected'));
 
