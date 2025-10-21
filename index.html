@@ -783,6 +783,337 @@
             font-size: 1.5em;
         }
 
+        /* Email Popup Modal */
+        .email-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 4000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s;
+        }
+
+        .email-modal.show {
+            display: flex;
+        }
+
+        .email-modal-content {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            text-align: center;
+            animation: slideUp 0.4s;
+        }
+
+        .email-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            cursor: pointer;
+            color: var(--dark);
+            background: none;
+            border: none;
+            transition: transform 0.3s;
+        }
+
+        .email-modal-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .email-modal h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            color: var(--coral);
+        }
+
+        .email-modal p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            color: var(--dark);
+        }
+
+        .email-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .email-input {
+            padding: 15px 20px;
+            border: 2px solid var(--light-blue);
+            border-radius: 30px;
+            font-size: 1em;
+            font-family: 'DM Sans', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: var(--coral);
+        }
+
+        .email-submit {
+            background: linear-gradient(135deg, var(--coral), var(--blue));
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .email-submit:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Size Guide Modal */
+        .size-guide-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 3500;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .size-guide-modal.show {
+            display: flex;
+        }
+
+        .size-guide-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .size-chart {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .size-chart th,
+        .size-chart td {
+            padding: 12px;
+            border: 1px solid var(--light-blue);
+            text-align: center;
+        }
+
+        .size-chart th {
+            background: var(--coral);
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Image Zoom */
+        .product-image img {
+            cursor: zoom-in;
+            transition: transform 0.3s;
+        }
+
+        .product-image.zoomed img {
+            cursor: zoom-out;
+            transform: scale(2);
+        }
+
+        /* Cross-Sell Section */
+        .cross-sell-section {
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid var(--light-blue);
+        }
+
+        .cross-sell-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            text-align: center;
+            color: var(--coral);
+        }
+
+        .cross-sell-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .cross-sell-item {
+            text-align: center;
+            padding: 15px;
+            border: 2px solid var(--light-blue);
+            border-radius: 15px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .cross-sell-item:hover {
+            border-color: var(--coral);
+            transform: translateY(-5px);
+        }
+
+        .cross-sell-image {
+            width: 100%;
+            height: 200px;
+            background: var(--cream);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid var(--light-blue);
+        }
+
+        .reviews-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .reviews-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: var(--coral);
+        }
+
+        .review-card {
+            background: var(--cream);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .review-stars {
+            color: gold;
+            font-size: 1.2em;
+        }
+
+        .verified-badge {
+            background: var(--blue);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        /* UGC Gallery */
+        .ugc-section {
+            padding: 60px 5%;
+            background: white;
+        }
+
+        .ugc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .ugc-item {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .ugc-item:hover {
+            transform: scale(1.05);
+        }
+
+        .ugc-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ugc-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 20px;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .ugc-item:hover .ugc-overlay {
+            transform: translateY(0);
+        }
+
+        /* Sticky Add to Cart (Mobile) */
+        .sticky-cart {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 15px 5%;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+            z-index: 900;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sticky-cart.show {
+            display: flex;
+        }
+
+        .sticky-price {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--coral);
+        }
+
+        .sticky-add-btn {
+            background: var(--coral);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .hero h1 {
@@ -814,6 +1145,58 @@
             }
         }
     </style>
+
+    <!-- Schema.org Markup for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "Sol de Coco",
+      "description": "Handmade tropical swimwear and bikinis. Bringing you endless summer vibes since 2024.",
+      "url": "https://soldecoco.com",
+      "logo": "https://soldecoco.com/logo.png",
+      "sameAs": [
+        "https://instagram.com/soldecoco",
+        "https://tiktok.com/@soldecoco"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Swimwear Collection",
+        "itemListElement": [
+          {
+            "@type": "Product",
+            "name": "Tropical Paradise Bikini",
+            "image": "https://soldecoco.com/images/tropical-paradise.jpg",
+            "description": "Reversible bikini set with tropical vibes",
+            "offers": {
+              "@type": "Offer",
+              "price": "89.00",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock",
+              "url": "https://soldecoco.com#product-1"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "5",
+              "reviewCount": "24"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+
+    <!-- Meta Tags for Social Sharing -->
+    <meta property="og:title" content="Sol de Coco - Tropical Swimwear">
+    <meta property="og:description" content="Handmade bikinis and swimsuits with endless summer vibes. Shop our tropical collection.">
+    <meta property="og:image" content="https://soldecoco.com/images/tropical-paradise.jpg">
+    <meta property="og:url" content="https://soldecoco.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sol de Coco - Tropical Swimwear">
+    <meta name="twitter:description" content="Handmade bikinis and swimsuits with endless summer vibes.">
+    <meta name="twitter:image" content="https://soldecoco.com/images/tropical-paradise.jpg">
+
 </head>
 <body>
     <header>
@@ -864,7 +1247,7 @@
                     <div class="product-description">Reversible bikini set</div>
                     <div class="product-price">$89</div>
                     <div class="size-selector">
-                        <label class="size-label">Select Size</label>
+                        <label class="size-label">Select Size <a href="#" onclick="openSizeGuide(); return false;" style="color: var(--blue); font-weight: 400; text-decoration: underline; font-size: 0.9em; margin-left: 10px;">Size Guide</a></label>
                         <div class="size-options">
                             <button class="size-btn" onclick="selectSize(event, 1, 'XS')">XS</button>
                             <button class="size-btn" onclick="selectSize(event, 1, 'S')">S</button>
@@ -874,6 +1257,64 @@
                         </div>
                     </div>
                     <button class="add-to-cart" onclick="addToCart('Tropical Paradise', 89.99, 1)">Add to Cart</button>
+
+                    <!-- Reviews Section for Product 1 -->
+                    <div class="reviews-section">
+                        <div class="reviews-header">
+                            <h3 class="reviews-title">Customer Reviews</h3>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div class="review-stars">★★★★★</div>
+                                <span style="color: #666;">(24 reviews)</span>
+                            </div>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div>
+                                    <div class="review-stars">★★★★★</div>
+                                    <strong>Sarah M.</strong>
+                                </div>
+                                <span class="verified-badge">✓ Verified Buyer</span>
+                            </div>
+                            <p style="margin-bottom: 10px; line-height: 1.6;">"Obsessed with this bikini! The colors are even more vibrant in person and the fit is perfect. True to size!"</p>
+                            <small style="color: #888;">Purchased size M • 2 weeks ago</small>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div>
+                                    <div class="review-stars">★★★★★</div>
+                                    <strong>Jessica L.</strong>
+                                </div>
+                                <span class="verified-badge">✓ Verified Buyer</span>
+                            </div>
+                            <p style="margin-bottom: 10px; line-height: 1.6;">"Love the reversible design! It's like getting two swimsuits in one. Great quality and super comfortable."</p>
+                            <small style="color: #888;">Purchased size S • 1 month ago</small>
+                        </div>
+
+                        <button style="background: none; border: 2px solid var(--coral); color: var(--coral); padding: 12px 30px; border-radius: 30px; font-weight: 600; cursor: pointer; margin-top: 15px; transition: all 0.3s;" onmouseover="this.style.background='var(--coral)'; this.style.color='white'" onmouseout="this.style.background='none'; this.style.color='var(--coral)'">Read All 24 Reviews</button>
+                    </div>
+
+                    <!-- Cross-Sell Section -->
+                    <div class="cross-sell-section">
+                        <h3 class="cross-sell-title">Complete The Look ✨</h3>
+                        <div class="cross-sell-grid">
+                            <div class="cross-sell-item" onclick="document.querySelector('[data-product=\'2\']').scrollIntoView({behavior: 'smooth'})">
+                                <div class="cross-sell-image">
+                                    <img src="images/coconut-dream.jpg" alt="Coconut Dream" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+                                </div>
+                                <div style="font-weight: 600; margin-bottom: 5px;">Coconut Dream</div>
+                                <div style="color: var(--coral); font-weight: 700;">$95</div>
+                            </div>
+                            <div class="cross-sell-item" onclick="document.querySelector('[data-product=\'3\']').scrollIntoView({behavior: 'smooth'})">
+                                <div class="cross-sell-image">
+                                    <img src="images/ocean-wave.jpg" alt="Ocean Wave" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+                                </div>
+                                <div style="font-weight: 600; margin-bottom: 5px;">Ocean Wave</div>
+                                <div style="color: var(--coral); font-weight: 700;">$84</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1050,6 +1491,49 @@
         <span id="toastMessage">Added to cart!</span>
     </div>
 
+    <!-- User Generated Content Gallery -->
+    <section class="ugc-section">
+        <div class="section-header">
+            <h2 class="section-title">#SolDeCocoVibes 🌴</h2>
+            <p class="section-subtitle">Join our community! Tag us @soldecoco for a chance to be featured</p>
+        </div>
+        <div class="ugc-grid">
+            <div class="ugc-item">
+                <img src="images/tropical-paradise.jpg" alt="Customer photo featuring Sol de Coco swimwear">
+                <div class="ugc-overlay">
+                    <div style="font-weight: 600;">@beachbabe23</div>
+                    <div style="font-size: 0.9em; opacity: 0.9;">Tropical Paradise Bikini</div>
+                </div>
+            </div>
+            <div class="ugc-item">
+                <img src="images/coconut-dream.jpg" alt="Customer photo featuring Sol de Coco swimwear">
+                <div class="ugc-overlay">
+                    <div style="font-weight: 600;">@summervibes</div>
+                    <div style="font-size: 0.9em; opacity: 0.9;">Coconut Dream One-Piece</div>
+                </div>
+            </div>
+            <div class="ugc-item">
+                <img src="images/ocean-wave.jpg" alt="Customer photo featuring Sol de Coco swimwear">
+                <div class="ugc-overlay">
+                    <div style="font-weight: 600;">@island_girl</div>
+                    <div style="font-size: 0.9em; opacity: 0.9;">Ocean Wave Set</div>
+                </div>
+            </div>
+            <div class="ugc-item">
+                <img src="images/sunset-glow.jpg" alt="Customer photo featuring Sol de Coco swimwear">
+                <div class="ugc-overlay">
+                    <div style="font-weight: 600;">@sunsetlover</div>
+                    <div style="font-size: 0.9em; opacity: 0.9;">Sunset Glow</div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+            <button style="background: linear-gradient(135deg, var(--coral), var(--blue)); color: white; padding: 15px 40px; border: none; border-radius: 30px; font-size: 1.1em; font-weight: 600; cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                Follow Us on Instagram 📷
+            </button>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -1218,6 +1702,189 @@
                 }
             });
         });
+
+        // ========== EMAIL CAPTURE MODAL ==========
+        const emailModal = document.getElementById('emailModal');
+        const emailModalClose = document.querySelector('.email-modal-close');
+
+        // Show email modal after 10 seconds (first visit only)
+        setTimeout(() => {
+            if (!localStorage.getItem('emailCaptured')) {
+                emailModal.classList.add('show');
+            }
+        }, 10000);
+
+        // Close modal
+        emailModalClose.addEventListener('click', () => {
+            emailModal.classList.remove('show');
+        });
+
+        // Close on outside click
+        emailModal.addEventListener('click', (e) => {
+            if (e.target === emailModal) {
+                emailModal.classList.remove('show');
+            }
+        });
+
+        // Handle email form submission
+        document.getElementById('emailForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+
+            // Store email (in production, send to your email service)
+            localStorage.setItem('emailCaptured', 'true');
+            localStorage.setItem('userEmail', email);
+
+            // Show success message
+            showToast('🎉 Welcome! Check your email for 10% off!');
+            emailModal.classList.remove('show');
+
+            // TODO: Send to email service (Klaviyo, Mailchimp, etc.)
+            console.log('Email captured:', email);
+        });
+
+        // ========== SIZE GUIDE MODAL ==========
+        function openSizeGuide() {
+            document.getElementById('sizeGuideModal').classList.add('show');
+        }
+
+        function closeSizeGuide() {
+            document.getElementById('sizeGuideModal').classList.remove('show');
+        }
+
+        // ========== IMAGE ZOOM ==========
+        document.querySelectorAll('.product-image').forEach(img => {
+            img.addEventListener('click', function() {
+                this.classList.toggle('zoomed');
+            });
+        });
+
+        // ========== STICKY MOBILE CART ==========
+        const stickyCart = document.getElementById('stickyCart');
+        if (window.innerWidth <= 768 && stickyCart) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    stickyCart.classList.add('show');
+                } else {
+                    stickyCart.classList.remove('show');
+                }
+            });
+        }
+
+        // ========== ANALYTICS TRACKING ==========
+        // Track key user actions
+        function trackEvent(eventName, eventData) {
+            // TODO: Send to Google Analytics, Mixpanel, etc.
+            console.log('Event:', eventName, eventData);
+
+            // Example: ga('send', 'event', eventName, eventData);
+        }
+
+        // Track email capture
+        document.querySelectorAll('.email-submit').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackEvent('email_capture', { source: 'popup_modal' });
+            });
+        });
+
+        // Track zoom usage
+        document.querySelectorAll('.product-image').forEach(img => {
+            img.addEventListener('click', () => {
+                trackEvent('image_zoom', { product: img.closest('[data-product]')?.dataset.product });
+            });
+        });
+
+        // Track size guide opens
+        window.openSizeGuide = function() {
+            trackEvent('size_guide_opened');
+            document.getElementById('sizeGuideModal').classList.add('show');
+        };
+
     </script>
+
+    <!-- Email Capture Modal -->
+    <div class="email-modal" id="emailModal">
+        <div class="email-modal-content">
+            <button class="email-modal-close">&times;</button>
+            <h2>Get 10% Off Your First Order! ☀️</h2>
+            <p>Join the Sol de Coco family and be the first to know about new drops, exclusive deals, and beach vibes.</p>
+            <form class="email-form" id="emailForm">
+                <input type="email" class="email-input" id="emailInput" placeholder="Enter your email" required>
+                <button type="submit" class="email-submit">Get My Discount</button>
+            </form>
+            <p style="font-size: 0.85em; margin-top: 15px; color: #888;">No spam, just sunshine. Unsubscribe anytime.</p>
+        </div>
+    </div>
+
+    <!-- Size Guide Modal -->
+    <div class="size-guide-modal" id="sizeGuideModal">
+        <div class="size-guide-content">
+            <button class="email-modal-close" onclick="closeSizeGuide()">&times;</button>
+            <h2 style="font-family: 'Playfair Display', serif; color: var(--coral); margin-bottom: 20px;">Size Guide</h2>
+
+            <h3 style="margin: 20px 0 10px;">How to Measure</h3>
+            <p style="margin-bottom: 20px;">Use a soft measuring tape and measure over bare skin or thin clothing for the most accurate fit.</p>
+
+            <ul style="list-style: none; padding: 0; margin-bottom: 30px;">
+                <li style="margin-bottom: 10px;"><strong>Bust:</strong> Measure around the fullest part of your bust</li>
+                <li style="margin-bottom: 10px;"><strong>Waist:</strong> Measure around your natural waistline</li>
+                <li style="margin-bottom: 10px;"><strong>Hips:</strong> Measure around the fullest part of your hips</li>
+            </ul>
+
+            <table class="size-chart">
+                <thead>
+                    <tr>
+                        <th>Size</th>
+                        <th>Bust (inches)</th>
+                        <th>Waist (inches)</th>
+                        <th>Hips (inches)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>XS</strong></td>
+                        <td>30-32</td>
+                        <td>23-25</td>
+                        <td>33-35</td>
+                    </tr>
+                    <tr>
+                        <td><strong>S</strong></td>
+                        <td>32-34</td>
+                        <td>25-27</td>
+                        <td>35-37</td>
+                    </tr>
+                    <tr>
+                        <td><strong>M</strong></td>
+                        <td>34-36</td>
+                        <td>27-29</td>
+                        <td>37-39</td>
+                    </tr>
+                    <tr>
+                        <td><strong>L</strong></td>
+                        <td>36-38</td>
+                        <td>29-31</td>
+                        <td>39-41</td>
+                    </tr>
+                    <tr>
+                        <td><strong>XL</strong></td>
+                        <td>38-40</td>
+                        <td>31-33</td>
+                        <td>41-43</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="margin-top: 20px; font-size: 0.9em; color: #666;">
+                <strong>Tip:</strong> Our swimsuits are designed to fit snugly. If you're between sizes or prefer more coverage, we recommend sizing up!
+            </p>
+        </div>
+    </div>
+
+    <!-- Sticky Mobile Cart -->
+    <div class="sticky-cart" id="stickyCart">
+        <div class="sticky-price">$89</div>
+        <button class="sticky-add-btn" onclick="document.querySelector('.add-to-cart').click()">Add to Cart</button>
+    </div>
+
 </body>
 </html>
