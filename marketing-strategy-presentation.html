@@ -45,12 +45,6 @@
             padding: 100px 60px;
             position: relative;
             background: linear-gradient(135deg, var(--cream) 0%, var(--lavender) 100%);
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .slide.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -936,25 +930,8 @@
     </div>
 
     <script>
-        // Intersection Observer for scroll animations
-        const slides = document.querySelectorAll('.slide');
         const progressBar = document.getElementById('progressBar');
         const scrollIndicator = document.getElementById('scrollIndicator');
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.2,
-            rootMargin: '0px'
-        });
-
-        slides.forEach(slide => {
-            observer.observe(slide);
-        });
 
         // Progress bar on scroll
         window.addEventListener('scroll', () => {
@@ -972,11 +949,6 @@
                 scrollIndicator.classList.remove('hidden');
             }
         });
-
-        // Show first slide immediately
-        if (slides.length > 0) {
-            slides[0].classList.add('visible');
-        }
     </script>
 </body>
 </html>
