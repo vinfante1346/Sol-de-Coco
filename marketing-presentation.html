@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sol de Coco - Marketing Strategy Presentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --coral: #fa5b26;
+            --blue: #6092b9;
+            --pink: #f5bce9;
+            --cream: #f8f0d6;
+            --light-blue: #c7dcf9;
+            --lavender: #efe2f3;
+            --olive: #ada335;
+            --dark: #2a2a2a;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--dark);
+            color: white;
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5em;
+            font-style: italic;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.3em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .tagline {
+            font-size: 1.8em;
+            font-style: italic;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        ul {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        li {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        li:before {
+            content: '☀️';
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .brand-colors {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .color-swatch {
+            text-align: center;
+        }
+
+        .color-box {
+            width: 100%;
+            height: 150px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .color-name {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .color-hex {
+            font-size: 1em;
+            opacity: 0.7;
+            font-family: monospace;
+        }
+
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .channel {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .channel:hover {
+            border-color: var(--coral);
+            transform: translateY(-5px);
+        }
+
+        .channel-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .channel-name {
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--coral);
+        }
+
+        .channel-desc {
+            font-size: 1em;
+            opacity: 0.7;
+        }
+
+        .content-examples {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .example-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 5px solid var(--coral);
+        }
+
+        .example-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--coral);
+            margin-bottom: 15px;
+        }
+
+        .example-text {
+            font-size: 1.1em;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .stat-box {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .stat-number {
+            font-size: 4em;
+            font-weight: 700;
+            color: var(--coral);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+
+        .box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 5px solid var(--coral);
+            margin-top: 30px;
+        }
+
+        .voice-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .voice-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .do {
+            border-left: 5px solid #4ade80;
+        }
+
+        .dont {
+            border-left: 5px solid #ef4444;
+        }
+
+        .voice-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        .control-btn {
+            background: var(--coral);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .control-btn:hover {
+            background: white;
+            color: var(--coral);
+            transform: scale(1.05);
+        }
+
+        .control-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .slide-number {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            font-size: 1.2em;
+            opacity: 0.5;
+            z-index: 100;
+        }
+
+        /* Slide backgrounds */
+        .slide-1 {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--lavender) 50%, var(--pink) 100%);
+        }
+
+        .slide-2 {
+            background: var(--cream);
+            color: var(--dark);
+        }
+
+        .slide-3 {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--blue) 100%);
+        }
+
+        .slide-4 {
+            background: var(--dark);
+        }
+
+        .slide-5 {
+            background: linear-gradient(135deg, #1a1a1a 0%, var(--dark) 100%);
+        }
+
+        .slide-6 {
+            background: var(--dark);
+        }
+
+        .slide-7 {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--dark) 100%);
+        }
+
+        .slide-8 {
+            background: var(--dark);
+        }
+
+        .slide-9 {
+            background: linear-gradient(135deg, var(--pink) 0%, var(--lavender) 100%);
+            color: var(--dark);
+        }
+
+        .slide-10 {
+            background: var(--dark);
+        }
+
+        .slide-11 {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--olive) 100%);
+        }
+
+        .slide-12 {
+            background: var(--dark);
+        }
+
+        .slide-13 {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--blue) 100%);
+        }
+
+        .timeline {
+            margin-top: 40px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+
+        .timeline-icon {
+            font-size: 2em;
+            min-width: 60px;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: var(--coral);
+        }
+
+        .timeline-content p {
+            font-size: 1.1em;
+        }
+
+        .platform-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .platform-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            border-top: 4px solid var(--coral);
+        }
+
+        .platform-name {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .platform-metric {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .metric-label {
+            opacity: 0.7;
+        }
+
+        .metric-value {
+            font-weight: 700;
+            color: var(--coral);
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 3em;
+            }
+
+            h2 {
+                font-size: 2.5em;
+            }
+
+            .two-column, .channel-grid, .content-examples, .voice-grid, .platform-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .brand-colors {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <div class="slide-number" id="slideNumber">1 / 13</div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide slide-1 active">
+            <div class="slide-content" style="text-align: center;">
+                <h1 style="color: var(--coral);">Sol de Coco</h1>
+                <p class="tagline" style="color: var(--blue);">tropical vibes. summer forever.</p>
+                <p style="font-size: 1.8em; margin-top: 60px; color: var(--dark);">Marketing Strategy & Brand Guidelines</p>
+                <p style="font-size: 1.2em; margin-top: 20px; color: var(--dark); opacity: 0.7;">A Complete Guide to Building the Brand</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Brand Colors -->
+        <div class="slide slide-2">
+            <div class="slide-content">
+                <h2 style="color: var(--coral);">Brand Color Palette</h2>
+                <p style="color: var(--dark);">Our tropical-inspired colors create a vibrant, beach-loving aesthetic</p>
+
+                <div class="brand-colors">
+                    <div class="color-swatch">
+                        <div class="color-box" style="background: #f5bce9;"></div>
+                        <div class="color-name" style="color: var(--dark);">Pink</div>
+                        <div class="color-hex" style="color: var(--dark);">#f5bce9</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="color-box" style="background: #f8f0d6;"></div>
+                        <div class="color-name" style="color: var(--dark);">Cream</div>
+                        <div class="color-hex" style="color: var(--dark);">#f8f0d6</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="color-box" style="background: #ada335;"></div>
+                        <div class="color-name" style="color: var(--dark);">Olive</div>
+                        <div class="color-hex" style="color: var(--dark);">#ada335</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="color-box" style="background: #efe2f3;"></div>
+                        <div class="color-name" style="color: var(--dark);">Lavender</div>
+                        <div class="color-hex" style="color: var(--dark);">#efe2f3</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="color-box" style="background: #c7dcf9;"></div>
+                        <div class="color-name" style="color: var(--dark);">Light Blue</div>
+                        <div class="color-hex" style="color: var(--dark);">#c7dcf9</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="color-box" style="background: #fa5b26;"></div>
+                        <div class="color-name" style="color: var(--dark);">Coral</div>
+                        <div class="color-hex" style="color: var(--dark);">#fa5b26</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="color-box" style="background: #6092b9;"></div>
+                        <div class="color-name" style="color: var(--dark);">Blue</div>
+                        <div class="color-hex" style="color: var(--dark);">#6092b9</div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="color-box" style="background: #2a2a2a;"></div>
+                        <div class="color-name" style="color: var(--dark);">Dark</div>
+                        <div class="color-hex" style="color: var(--dark);">#2a2a2a</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Target Audience -->
+        <div class="slide slide-3">
+            <div class="slide-content">
+                <h2>Target Audience</h2>
+                <p style="font-size: 1.5em; margin-bottom: 40px;">Beach-loving babes who live for summer vibes</p>
+
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-number">17-36</div>
+                        <div class="stat-label">Age Range</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">Gen Z</div>
+                        <div class="stat-label">Primary Demo</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">TikTok</div>
+                        <div class="stat-label">Main Platform</div>
+                    </div>
+                </div>
+
+                <div class="two-column" style="margin-top: 60px;">
+                    <div>
+                        <h3>They Value</h3>
+                        <ul style="font-size: 1.2em;">
+                            <li>Authenticity over perfection</li>
+                            <li>Sustainability & ethics</li>
+                            <li>Unique, handcrafted pieces</li>
+                            <li>Community & connection</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>They Love</h3>
+                        <ul style="font-size: 1.2em;">
+                            <li>Beach days & tropical vacations</li>
+                            <li>Instagram-worthy moments</li>
+                            <li>Small businesses with stories</li>
+                            <li>Affordable luxury</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Brand Voice -->
+        <div class="slide slide-4">
+            <div class="slide-content">
+                <h2 style="color: var(--coral);">Brand Voice & Tone</h2>
+                <p style="font-size: 1.4em; margin-bottom: 50px;">How we talk to our babes</p>
+
+                <div class="voice-grid">
+                    <div class="voice-card do">
+                        <div class="voice-title" style="color: #4ade80;">✓ DO</div>
+                        <ul style="font-size: 1.1em;">
+                            <li>Use lowercase, casual vibes</li>
+                            <li>Be authentic & relatable</li>
+                            <li>Use emojis (☀️🌴🌊💗)</li>
+                            <li>Keep it fun & playful</li>
+                            <li>Show personality</li>
+                            <li>Use "babes", "girls", "you"</li>
+                        </ul>
+                    </div>
+                    <div class="voice-card dont">
+                        <div class="voice-title" style="color: #ef4444;">✗ DON'T</div>
+                        <ul style="font-size: 1.1em;">
+                            <li>Be corporate or formal</li>
+                            <li>Overuse exclamation marks</li>
+                            <li>Sound salesy or pushy</li>
+                            <li>Use jargon or complex words</li>
+                            <li>Be too serious</li>
+                            <li>Sound fake or forced</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="box" style="margin-top: 50px;">
+                    <h3 style="color: var(--coral); margin-bottom: 20px;">Examples:</h3>
+                    <p style="font-size: 1.2em; margin-bottom: 15px;">✓ "summer's calling and she wants you in this bikini ☀️"</p>
+                    <p style="font-size: 1.2em; margin-bottom: 15px;">✓ "just dropped: your new fav swimsuit"</p>
+                    <p style="font-size: 1.2em; margin-bottom: 15px;">✓ "made with love for beach babes like you 🌴"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Marketing Channels -->
+        <div class="slide slide-5">
+            <div class="slide-content">
+                <h2 style="color: var(--coral);">Marketing Channels</h2>
+                <p style="font-size: 1.4em; margin-bottom: 40px;">Where we'll reach our audience</p>
+
+                <div class="channel-grid">
+                    <div class="channel">
+                        <div class="channel-icon">🎵</div>
+                        <div class="channel-name">TikTok</div>
+                        <div class="channel-desc">2-3 posts daily<br>Try-ons, BTS, lifestyle</div>
+                    </div>
+                    <div class="channel">
+                        <div class="channel-icon">📷</div>
+                        <div class="channel-name">Instagram</div>
+                        <div class="channel-desc">Reels, Stories, Shopping<br>4-5 posts/week</div>
+                    </div>
+                    <div class="channel">
+                        <div class="channel-icon">📌</div>
+                        <div class="channel-name">Pinterest</div>
+                        <div class="channel-desc">10-15 pins/day<br>SEO traffic driver</div>
+                    </div>
+                    <div class="channel">
+                        <div class="channel-icon">📧</div>
+                        <div class="channel-name">Email</div>
+                        <div class="channel-desc">Automation flows<br>2-3 campaigns/week</div>
+                    </div>
+                    <div class="channel">
+                        <div class="channel-icon">💰</div>
+                        <div class="channel-name">Paid Ads</div>
+                        <div class="channel-desc">TikTok, FB, IG, Google<br>$2.5K/month budget</div>
+                    </div>
+                    <div class="channel">
+                        <div class="channel-icon">⭐</div>
+                        <div class="channel-name">Influencers</div>
+                        <div class="channel-desc">Micro-influencers<br>1K-50K followers</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Content Strategy -->
+        <div class="slide slide-6">
+            <div class="slide-content">
+                <h2 style="color: var(--coral);">Content Pillars</h2>
+                <p style="font-size: 1.4em; margin-bottom: 40px;">What we post about</p>
+
+                <div class="content-examples">
+                    <div class="example-card">
+                        <div class="example-title">Product Showcases (40%)</div>
+                        <div class="example-text">
+                            • Try-on hauls & reviews<br>
+                            • Bikini styling tips<br>
+                            • Size comparisons<br>
+                            • Reversible transformations<br>
+                            • "Get ready with me for beach"
+                        </div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-title">Behind-the-Scenes (25%)</div>
+                        <div class="example-text">
+                            • Packing orders with love<br>
+                            • Design process & fabric sourcing<br>
+                            • Day in the life of founder<br>
+                            • Photoshoot BTS<br>
+                            • Meet the team
+                        </div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-title">Lifestyle & Aspirational (20%)</div>
+                        <div class="example-text">
+                            • Beach day vlogs<br>
+                            • Vacation content<br>
+                            • Pool party vibes<br>
+                            • Sunset moments<br>
+                            • Tropical destinations
+                        </div>
+                    </div>
+                    <div class="example-card">
+                        <div class="example-title">Trendy & Viral (15%)</div>
+                        <div class="example-text">
+                            • Trending sounds & challenges<br>
+                            • POV videos<br>
+                            • Duets with creators<br>
+                            • Relatable beach girl content<br>
+                            • Meme-worthy moments
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: TikTok Strategy -->
+        <div class="slide slide-7">
+            <div class="slide-content">
+                <h2>TikTok Strategy</h2>
+                <p style="font-size: 1.5em; margin-bottom: 40px;">Our #1 growth channel</p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon">🎯</div>
+                        <div class="timeline-content">
+                            <h3>Posting Schedule</h3>
+                            <p>2-3 times daily at 7-9am, 12-2pm, 7-10pm EST for max reach</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">📱</div>
+                        <div class="timeline-content">
+                            <h3>Content Format</h3>
+                            <p>Hook in first 3 seconds • Native feel (not polished ads) • Trending sounds • Text overlays • Strong CTA</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">🎬</div>
+                        <div class="timeline-content">
+                            <h3>Video Ideas</h3>
+                            <p>"POV: You finally found the perfect bikini" • Beach bag essentials • Small biz owner reacts to orders • Try-on hauls</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">🛍️</div>
+                        <div class="timeline-content">
+                            <h3>TikTok Shop</h3>
+                            <p>Launch when eligible (1K followers) • Pin products in videos • Go LIVE 2-3x/week • Exclusive LIVE discounts</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Instagram Strategy -->
+        <div class="slide slide-8">
+            <div class="slide-content">
+                <h2 style="color: var(--coral);">Instagram Strategy</h2>
+                <p style="font-size: 1.4em; margin-bottom: 40px;">Build community & drive sales</p>
+
+                <div class="platform-stats">
+                    <div class="platform-card">
+                        <div class="platform-name">📸 Feed Posts</div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Frequency</span>
+                            <span class="metric-value">4-5x/week</span>
+                        </div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Content</span>
+                            <span class="metric-value">Product photos, UGC, lifestyle</span>
+                        </div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Strategy</span>
+                            <span class="metric-value">Shopping tags on every post</span>
+                        </div>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-name">🎥 Reels</div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Frequency</span>
+                            <span class="metric-value">4-5x/week</span>
+                        </div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Content</span>
+                            <span class="metric-value">Repurpose TikTok content</span>
+                        </div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Strategy</span>
+                            <span class="metric-value">Trending audio + product link</span>
+                        </div>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-name">📲 Stories</div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Frequency</span>
+                            <span class="metric-value">10-15x/day</span>
+                        </div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Content</span>
+                            <span class="metric-value">BTS, polls, customer features</span>
+                        </div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Strategy</span>
+                            <span class="metric-value">Link stickers to products</span>
+                        </div>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-name">🎨 Highlights</div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Categories</span>
+                            <span class="metric-value">Reviews, Size Guide, FAQ, BTS</span>
+                        </div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Content</span>
+                            <span class="metric-value">Customer photos, testimonials</span>
+                        </div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Strategy</span>
+                            <span class="metric-value">Social proof at a glance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Influencer Marketing -->
+        <div class="slide slide-9">
+            <div class="slide-content">
+                <h2 style="color: var(--coral);">Influencer Strategy</h2>
+                <p style="color: var(--dark); font-size: 1.4em; margin-bottom: 40px;">Micro-influencers for authentic growth</p>
+
+                <div class="two-column">
+                    <div>
+                        <h3 style="color: var(--dark);">Target Influencers</h3>
+                        <ul style="font-size: 1.2em; color: var(--dark);">
+                            <li>3K-30K followers</li>
+                            <li>Engagement rate >5%</li>
+                            <li>Beach/travel/lifestyle content</li>
+                            <li>Audience: women 18-35</li>
+                            <li>USA based (coastal states)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--dark);">Partnership Model</h3>
+                        <ul style="font-size: 1.2em; color: var(--dark);">
+                            <li>Month 1-2: Gifting only</li>
+                            <li>Month 3+: $50-200 per post</li>
+                            <li>Unique discount codes (15-20%)</li>
+                            <li>Affiliate commission (10%)</li>
+                            <li>Long-term brand ambassadors</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="box" style="background: white; color: var(--dark); margin-top: 50px; border-left-color: var(--coral);">
+                    <h3 style="color: var(--coral); margin-bottom: 20px;">Monthly Goals</h3>
+                    <p style="color: var(--dark); font-size: 1.2em;">Month 1-2: 10 influencers (gifting) • Month 3-4: 15 influencers (5 paid) • Month 5-6: 20 influencers (10 paid)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Email Marketing -->
+        <div class="slide slide-10">
+            <div class="slide-content">
+                <h2 style="color: var(--coral);">Email Marketing</h2>
+                <p style="font-size: 1.4em; margin-bottom: 40px;">Automated flows + weekly campaigns</p>
+
+                <div class="two-column">
+                    <div>
+                        <h3 style="color: var(--light-blue);">Automated Flows</h3>
+                        <div class="box">
+                            <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>Welcome Series (3 emails)</strong><br>Email 1: Welcome + 15% off<br>Email 2: Founder story<br>Email 3: Bestsellers + size guide</p>
+                        </div>
+                        <div class="box">
+                            <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>Abandoned Cart (3 emails)</strong><br>Email 1 (1hr): You left something<br>Email 2 (24hr): 10% off reminder<br>Email 3 (48hr): Last chance</p>
+                        </div>
+                        <div class="box">
+                            <p style="font-size: 1.1em;"><strong>Post-Purchase (4 emails)</strong><br>Confirmation → Shipping → Review request → Repurchase (20% off)</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--light-blue);">Campaign Schedule</h3>
+                        <div class="box">
+                            <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>Monday:</strong> New arrival or featured product</p>
+                        </div>
+                        <div class="box">
+                            <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>Wednesday:</strong> Style guide or blog content</p>
+                        </div>
+                        <div class="box">
+                            <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>Friday:</strong> Weekend sale or promotion</p>
+                        </div>
+                        <div class="box">
+                            <p style="font-size: 1.1em;"><strong>Special:</strong> New collections, holidays, flash sales, customer spotlights</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Paid Advertising -->
+        <div class="slide slide-11">
+            <div class="slide-content">
+                <h2>Paid Ads Budget</h2>
+                <p style="font-size: 1.5em; margin-bottom: 40px;">Scale what works</p>
+
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-number">$1K</div>
+                        <div class="stat-label">Month 1-2</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">$2.5K</div>
+                        <div class="stat-label">Month 3-6</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">3:1</div>
+                        <div class="stat-label">Target ROAS</div>
+                    </div>
+                </div>
+
+                <div class="two-column" style="margin-top: 60px;">
+                    <div>
+                        <h3>Budget Allocation</h3>
+                        <div class="box">
+                            <p style="font-size: 1.2em; margin-bottom: 10px;">TikTok Ads: 50%</p>
+                            <p style="font-size: 1.2em; margin-bottom: 10px;">Facebook/Instagram Ads: 40%</p>
+                            <p style="font-size: 1.2em;">Google Ads: 10%</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Campaign Types</h3>
+                        <div class="box">
+                            <p style="font-size: 1.2em; margin-bottom: 10px;">Awareness: Video views, brand awareness</p>
+                            <p style="font-size: 1.2em; margin-bottom: 10px;">Consideration: Traffic, engagement</p>
+                            <p style="font-size: 1.2em;">Conversion: Purchases, catalog sales</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: KPIs & Goals -->
+        <div class="slide slide-12">
+            <div class="slide-content">
+                <h2 style="color: var(--coral);">Goals & KPIs</h2>
+                <p style="font-size: 1.4em; margin-bottom: 40px;">What we're tracking</p>
+
+                <div class="platform-stats">
+                    <div class="platform-card">
+                        <div class="platform-name">Month 1-2</div>
+                        <div class="platform-metric">
+                            <span class="metric-label">TikTok Followers</span>
+                            <span class="metric-value">1K-2K</span>
+                        </div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Instagram Followers</span>
+                            <span class="metric-value">500-1K</span>
+                        </div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Monthly Revenue</span>
+                            <span class="metric-value">$2K-5K</span>
+                        </div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Email List</span>
+                            <span class="metric-value">200 subscribers</span>
+                        </div>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-name">Month 3-4</div>
+                        <div class="platform-metric">
+                            <span class="metric-label">TikTok Followers</span>
+                            <span class="metric-value">5K-10K</span>
+                        </div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Instagram Followers</span>
+                            <span class="metric-value">2K-3K</span>
+                        </div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Monthly Revenue</span>
+                            <span class="metric-value">$10K-15K</span>
+                        </div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Email List</span>
+                            <span class="metric-value">1K subscribers</span>
+                        </div>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-name">Month 5-6</div>
+                        <div class="platform-metric">
+                            <span class="metric-label">TikTok Followers</span>
+                            <span class="metric-value">20K-30K</span>
+                        </div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Instagram Followers</span>
+                            <span class="metric-value">5K-7K</span>
+                        </div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Monthly Revenue</span>
+                            <span class="metric-value">$25K-35K</span>
+                        </div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Email List</span>
+                            <span class="metric-value">3K subscribers</span>
+                        </div>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-name">Month 7-12</div>
+                        <div class="platform-metric">
+                            <span class="metric-label">TikTok Followers</span>
+                            <span class="metric-value">50K+</span>
+                        </div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Instagram Followers</span>
+                            <span class="metric-value">15K+</span>
+                        </div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Monthly Revenue</span>
+                            <span class="metric-value">$50K+</span>
+                        </div>
+                        <div class="platform-metric">
+                            <span class="metric-label">Email List</span>
+                            <span class="metric-value">10K subscribers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Call to Action -->
+        <div class="slide slide-13">
+            <div class="slide-content" style="text-align: center;">
+                <h1 style="color: white; margin-bottom: 40px;">Let's Build Something Beautiful</h1>
+                <p class="tagline" style="color: white;">tropical vibes. summer forever. ☀️</p>
+
+                <div class="box" style="margin-top: 80px; text-align: left;">
+                    <h3 style="color: var(--coral); margin-bottom: 30px;">Next Steps</h3>
+                    <ul style="font-size: 1.3em;">
+                        <li>Set up all social media accounts</li>
+                        <li>Create 30 days of content in advance</li>
+                        <li>Launch website & start email list</li>
+                        <li>Begin influencer outreach</li>
+                        <li>Start posting & building community</li>
+                        <li>Launch with giveaway & promotion</li>
+                    </ul>
+                </div>
+
+                <p style="font-size: 1.5em; margin-top: 60px; font-style: italic;">🌴 Ready to make waves? Let's go! 🌊</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="control-btn" id="prevBtn" onclick="previousSlide()">← Previous</button>
+        <button class="control-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+
+            document.getElementById('slideNumber').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        updateSlide();
+    </script>
+</body>
+</html>
