@@ -1206,8 +1206,73 @@
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
         }
 
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8em;
+            cursor: pointer;
+            padding: 8px;
+            color: var(--dark);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 5000;
+            padding: 80px 30px 30px;
+            animation: slideInLeft 0.3s;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2.5em;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .mobile-menu-link {
+            font-size: 1.5em;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--light-blue);
+            transition: color 0.3s;
+        }
+
+        .mobile-menu-link:hover {
+            color: var(--coral);
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            /* Hero Section */
             .hero h1 {
                 font-size: 3em;
             }
@@ -1220,19 +1285,239 @@
                 font-size: 2.2em;
             }
 
+            /* Product Grid - Mobile First */
             .product-grid {
                 grid-template-columns: 1fr;
+                gap: 30px;
             }
 
+            .product-card {
+                max-width: 100%;
+            }
+
+            /* Navigation - Mobile Optimized */
             .nav-links .nav-link {
-                display: none;
+                display: none !important;
             }
 
+            .nav-links {
+                gap: 15px;
+            }
+
+            /* Show mobile menu button */
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            /* TOUCH TARGETS - Minimum 48x48px */
+            .cart-icon,
+            .wishlist-icon-btn {
+                min-width: 48px;
+                min-height: 48px;
+                font-size: 1.8em !important;
+            }
+
+            .size-btn {
+                min-width: 48px;
+                min-height: 48px;
+                padding: 12px;
+                font-size: 1em;
+            }
+
+            .add-to-cart {
+                min-height: 54px;
+                font-size: 1.1em;
+                padding: 16px 30px;
+            }
+
+            .wishlist-btn {
+                min-width: 48px;
+                min-height: 48px;
+            }
+
+            /* Modals - Mobile Optimized */
+            .email-modal-content,
+            .size-guide-content,
+            .wishlist-content {
+                padding: 30px 20px;
+                width: 95%;
+                max-height: 90vh;
+            }
+
+            .email-modal h2 {
+                font-size: 1.8em;
+            }
+
+            .email-modal p {
+                font-size: 1em;
+            }
+
+            /* Size Guide - Mobile */
+            .size-chart {
+                font-size: 0.85em;
+            }
+
+            .size-chart th,
+            .size-chart td {
+                padding: 8px 5px;
+            }
+
+            /* Wishlist Modal - Mobile */
+            .wishlist-item {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .wishlist-item img {
+                width: 100% !important;
+                height: 200px !important;
+            }
+
+            .wishlist-item > div:last-child {
+                width: 100%;
+            }
+
+            .wishlist-item button {
+                width: 100%;
+                padding: 12px !important;
+            }
+
+            /* Reviews Section - Mobile */
+            .reviews-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .review-card {
+                padding: 20px;
+            }
+
+            .review-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            /* Cross-Sell - Mobile */
+            .cross-sell-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .cross-sell-image {
+                height: 250px;
+            }
+
+            /* UGC Gallery - Mobile */
+            .ugc-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .ugc-section {
+                padding: 40px 5%;
+            }
+
+            /* Live Chat Button - Mobile */
+            .live-chat-btn {
+                width: 56px;
+                height: 56px;
+                bottom: 80px; /* Above sticky cart */
+                right: 20px;
+                font-size: 1.6em;
+            }
+
+            /* Sticky Cart - Always show on mobile */
+            .sticky-cart {
+                display: flex !important;
+            }
+
+            /* Footer */
             .newsletter-form {
                 flex-direction: column;
             }
 
             .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            /* Larger tap targets for links */
+            .footer-section a {
+                padding: 8px 0;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+
+            .social-link {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4em;
+            }
+
+            /* Cart Modal - Mobile */
+            .cart-modal {
+                width: 100%;
+                max-width: 100%;
+                border-radius: 20px 20px 0 0;
+            }
+
+            /* Product Image Container */
+            .product-image-container {
+                height: 350px;
+            }
+
+            /* Email Form - Mobile */
+            .email-form {
+                gap: 12px;
+            }
+
+            .email-input,
+            .email-submit {
+                padding: 16px 24px;
+                font-size: 1em;
+            }
+
+            /* Hero CTA Buttons - Mobile */
+            .cta-buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .cta-btn {
+                width: 100%;
+                padding: 16px 30px;
+                font-size: 1em;
+            }
+        }
+
+        /* Extra small screens - 480px and below */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .logo {
+                font-size: 1.5em;
+            }
+
+            .email-modal-content,
+            .size-guide-content,
+            .wishlist-content {
+                padding: 25px 15px;
+            }
+
+            .product-price {
+                font-size: 2em;
+            }
+
+            .section-title {
+                font-size: 1.8em;
+            }
+
+            /* UGC Gallery - Stack on very small screens */
+            .ugc-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -1293,7 +1578,10 @@
 <body>
     <header>
         <nav>
-            <div class="logo">Sol de Coco</div>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+                <div class="logo">Sol de Coco</div>
+            </div>
             <div class="nav-links">
                 <a href="#shop" class="nav-link">Shop</a>
                 <a href="quiz.html" class="nav-link" style="background: linear-gradient(135deg, var(--coral), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600;">Quiz ✨</a>
@@ -1309,6 +1597,18 @@
             </div>
         </nav>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()">&times;</button>
+        <div class="mobile-menu-links">
+            <a href="#shop" class="mobile-menu-link" onclick="toggleMobileMenu()">Shop</a>
+            <a href="quiz.html" class="mobile-menu-link">Take the Quiz ✨</a>
+            <a href="#about" class="mobile-menu-link" onclick="toggleMobileMenu()">About</a>
+            <a href="#" class="mobile-menu-link" onclick="openWishlist(); toggleMobileMenu();">♡ Wishlist</a>
+            <a href="#" class="mobile-menu-link" onclick="toggleCart(); toggleMobileMenu();">🛍 Cart</a>
+        </div>
+    </div>
 
     <section class="hero">
         <div class="hero-content">
@@ -1799,6 +2099,17 @@
 
         function closeWishlist() {
             document.getElementById('wishlistModal').classList.remove('show');
+        }
+
+        // ========== MOBILE MENU ==========
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+            // Prevent body scroll when menu is open
+            if (document.getElementById('mobileMenu').classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
         }
 
         function renderWishlist() {

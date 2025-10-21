@@ -293,20 +293,146 @@
         }
 
         @media (max-width: 768px) {
+            /* Quiz Container - Mobile */
             .quiz-container {
                 padding: 30px 20px;
+                border-radius: 20px;
+            }
+
+            /* Logo - Mobile */
+            .logo {
+                font-size: 2em;
+                margin-bottom: 20px;
+            }
+
+            /* Questions - Mobile */
+            .question-title {
+                font-size: 1.5em;
+                line-height: 1.3;
+            }
+
+            .question-subtitle {
+                font-size: 0.95em;
+            }
+
+            /* Answer Buttons - TOUCH OPTIMIZED */
+            .answer-btn {
+                padding: 16px;
+                min-height: 80px;
+                font-size: 0.95em;
+            }
+
+            .answer-emoji {
+                font-size: 2.5em;
+            }
+
+            .answer-title {
+                font-size: 1em;
+            }
+
+            .answer-description {
+                font-size: 0.85em;
+            }
+
+            /* Results - Mobile */
+            .results-title {
+                font-size: 2em;
+            }
+
+            .results-subtitle {
+                font-size: 1em;
+            }
+
+            /* Product Cards - Mobile */
+            .recommended-products {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .product-card-mini {
+                padding: 20px;
+            }
+
+            .product-image-mini {
+                height: 250px;
+                font-size: 4em;
+            }
+
+            /* Email Form - Mobile */
+            .email-form {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .email-input,
+            .email-form button {
+                width: 100%;
+                padding: 16px 24px;
+                font-size: 1em;
+                min-height: 52px;
+            }
+
+            /* CTA Buttons - Mobile */
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                padding: 16px 30px;
+                min-height: 52px;
+                font-size: 1em;
+            }
+
+            /* Email Capture Section - Mobile */
+            .email-capture {
+                padding: 25px 20px;
+            }
+
+            .email-capture h3 {
+                font-size: 1.3em;
+            }
+
+            .email-capture p {
+                font-size: 0.95em;
+            }
+        }
+
+        /* Extra Small Screens - 480px and below */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .quiz-container {
+                padding: 25px 15px;
+            }
+
+            .logo {
+                font-size: 1.8em;
             }
 
             .question-title {
-                font-size: 1.4em;
+                font-size: 1.3em;
             }
 
-            .email-form {
-                flex-direction: column;
+            .answer-btn {
+                padding: 14px;
+                min-height: 70px;
             }
 
-            .cta-buttons {
-                flex-direction: column;
+            .answer-emoji {
+                font-size: 2em;
+            }
+
+            .results-title {
+                font-size: 1.6em;
+            }
+
+            .product-image-mini {
+                height: 200px;
             }
         }
     </style>
